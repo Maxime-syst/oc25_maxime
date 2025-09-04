@@ -15,11 +15,13 @@ from microbit import *
 import music
 import speech
 
+
 p=0
 # Code in a 'while True:' loop repeats forever
 while True:
     display.show(p)
     if button_a.is_pressed():
+        sleep(350)
         p=p+1
         if p==10:
             p=0
@@ -29,7 +31,7 @@ while True:
             display.show(Image.HEART)
             sleep(1000)
         elif p==1:
-            music.play(['e4','e4','e4','c4:3','g4:2','e4:2','c4:4','g4:2','e4:2','b4','b4','b4','c5','g4:2','e4:2','c4','g4:2','e4:2'])
+            music.play(['e4','e4','e4','c4:3','g4:1','e4:4','c4:3','g4:1','e4:4','b4:4','b4:4','b4:4','c5:3','g4:1','e4:4','c4:3','g4:1','e4:2'])
         elif p==2:
             display.scroll('WOAW')
         elif p==3:
@@ -41,10 +43,16 @@ while True:
         elif p==6:
             display.scroll(temperature())
             speech.say('temperature()')
-       
-       
+        elif p==7:
+            display.scroll(compass.heading())
+        elif p==8:
+            speech.say('read_light_level()')
+            display.scroll(display.read_light_level())
+        elif p==9:
+            display.scroll(microphone.sound_level())
             
-       
+
+
 
     
     
