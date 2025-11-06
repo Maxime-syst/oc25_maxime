@@ -1,0 +1,23 @@
+body{ background-image: url("/2_web/images/ski.jpeg");
+font-family:'Times New Roman', Times, serif;
+color:azure
+}
+
+h1{
+    color: red;
+    background-color: rgb(144, 49,47);
+    border-radius: 18px;
+    padding: 5px 5px 5px 5px;
+    
+    font-display: swap;
+}
+
+h2,h3{
+    color: red;
+
+}
+.Important{
+    border: rgb(144, 49,47);
+    margin:0px;
+    
+}

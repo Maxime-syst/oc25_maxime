@@ -1,0 +1,26 @@
+body{ 
+font-family:Georgia, 'Times New Roman', Times, serif;
+color: black
+}
+
+h1{
+    color: rgb(204,133,49);
+    background-color: gold;
+    background-image: url();
+    
+}
+
+#valais{
+
+    color:white;
+    background-color: rgb(200,44,41);
+    border-radius: 18;
+}
+
+#Vaud{
+
+    color:white;
+    background-color: rgb(76,160,85);
+    border-radius: 18;
+
+}

@@ -1,0 +1,18 @@
+body{ 
+font-family:Georgia, 'Times New Roman', Times, serif;
+color:azure
+}
+
+h1{
+    color: rgb(204,133,49);
+    background-color: gold;
+    
+}
+
+
+img.displayed{
+    text-align: center;
+    display: block;
+    margin: left 20px;;
+    margin-right: auto;
+}
