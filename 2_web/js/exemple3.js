@@ -14,3 +14,9 @@ context.fillStyle="black";
 context.fillRect(0,0,100,100);
 context.fillRect(100,100,100,100);
 context.fillRect(200,200,100,100);
+
+for(var i=0; i<5; i++){
+    for (var j =0;j<5;j++){
+        if()
+    }
+}
