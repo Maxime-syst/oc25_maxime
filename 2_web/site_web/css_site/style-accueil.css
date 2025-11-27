@@ -1,18 +1,59 @@
 body{ 
-font-family:Georgia, 'Times New Roman', Times, serif;
-color:azure
+    font-family:Georgia, 'Okaso', Times, sans-serif;
+    color:azure
 }
 
 h1{
     color: rgb(204,133,49);
     background-color: gold;
-    
-}
-
-
-img.displayed{
-    text-align: center;
-    display: block;
-    margin: left 20px;;
+    margin-left: auto;
     margin-right: auto;
 }
+
+
+body{
+    border: solid 1px green; 
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+img.img_centre {
+    width:400px;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#link_centre{
+    margin-left: auto;
+    margin-right: auto;
+
+}
+#navigation {
+    background-color: lightgray;
+    padding-top: 2px;
+    padding-bottom:2px;
+
+}
+ 
+#navigation ul{
+    /* border:solid 1px blue; */
+    width: fit-content;
+    padding-left: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#navigation li {
+    display:inline;
+    /* border:solid 1px red; */
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
+
+
+
