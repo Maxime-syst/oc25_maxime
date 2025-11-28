@@ -1,6 +1,9 @@
 body{ 
     font-family:Georgia, 'Okaso', Times, sans-serif;
-    color:azure
+    color: black
+    margin-left: auto;
+    margin-right: auto;
+
 }
 
 h1{
@@ -11,6 +14,11 @@ h1{
 }
 
 
+#texte {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 body{
     border: solid 1px green; 
     max-width: 1000px;
@@ -19,6 +27,8 @@ body{
     padding-left: 5px;
     padding-right: 5px;
 }
+
+
 
 
 img.img_centre {
@@ -54,6 +64,12 @@ img.img_centre {
     margin-right: 5px;
 
 }
+
+a{
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 
 

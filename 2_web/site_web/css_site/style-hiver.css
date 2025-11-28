@@ -1,0 +1,48 @@
+body{ 
+font-family:Georgia, 'Times New Roman', Times, serif;
+color: black
+}
+
+h1{
+    color: rgb(204,133,49);
+    background-color: gold;
+    background-image: url();
+    
+}
+
+#valais{
+
+    color:white;
+    background-color: rgb(200,44,41);
+    border-radius: 18;
+}
+
+#vaud{
+
+    color:white;
+    background-color: rgb(76,160,85);
+    border-radius: 18;
+
+}
+
+#navigation {
+    background-color: lightgray;
+    padding-top: 2px;
+    padding-bottom:2px;
+
+}
+ 
+#navigation ul{
+    /* border:solid 1px blue; */
+    width: fit-content;
+    padding-left: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#navigation li {
+    display:inline;
+    /* border:solid 1px red; */
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
