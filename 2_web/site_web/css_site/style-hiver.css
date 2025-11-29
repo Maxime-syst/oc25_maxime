@@ -1,20 +1,25 @@
 body{ 
-font-family:Georgia, 'Times New Roman', Times, serif;
-color: black
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: red;
+    background-color:  black;
+    margin-left: auto;
+    margin-right: auto;
+
 }
 
 h1{
-    color: rgb(204,133,49);
-    background-color: gold;
-    background-image: url();
-    
+    color: white;
+    background-color: red;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #valais{
 
     color:white;
-    background-color: rgb(200,44,41);
+    background-color: red;
     border-radius: 18;
+    padding-right: -3cm;
 }
 
 #vaud{
@@ -25,10 +30,19 @@ h1{
 
 }
 
+body{
+    border: solid 1px rgb(144, 49,47); 
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 #navigation {
-    background-color: lightgray;
-    padding-top: 2px;
-    padding-bottom:2px;
+    background-color:red ;
+    padding-top: 1px;
+    padding-bottom:1px;
 
 }
  
@@ -45,4 +59,10 @@ h1{
     margin-left: 5px;
     margin-right: 5px;
 
+}
+
+a{
+    color:white;
+    margin-left: auto;
+    margin-right: auto;
 }

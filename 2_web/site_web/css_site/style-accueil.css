@@ -1,26 +1,8 @@
 body{ 
-    font-family:Georgia, 'Okaso', Times, sans-serif;
-    color: black
-    margin-left: auto;
-    margin-right: auto;
-
-}
-
-h1{
-    color: rgb(204,133,49);
-    background-color: gold;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-
-#texte {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-body{
-    border: solid 1px green; 
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: red;
+    background-color:  black;
+    border: solid 1px rgb(144, 49,47); 
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
@@ -28,7 +10,25 @@ body{
     padding-right: 5px;
 }
 
+h1,p {
+    margin-left: auto;
+    margin-right: auto;
+   
+}
 
+h1{
+    color: white;
+    background-color: red;
+    text-align: center;
+
+   
+}
+
+
+#texte {
+    text-align: center;
+   
+}
 
 
 img.img_centre {
@@ -44,9 +44,9 @@ img.img_centre {
 
 }
 #navigation {
-    background-color: lightgray;
-    padding-top: 2px;
-    padding-bottom:2px;
+    background-color:red ;
+    padding-top: 1px;
+    padding-bottom:1px;
 
 }
  
@@ -66,10 +66,15 @@ img.img_centre {
 }
 
 a{
+    color:white;
     margin-left: auto;
     margin-right: auto;
 }
 
+p{
+    margin-left: auto;
+    margin-right: auto;
+}
 
 
 
