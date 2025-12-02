@@ -47,6 +47,7 @@ img.img_centre {
     background-color:red ;
     padding-top: 1px;
     padding-bottom:1px;
+    text-decoration: none;
 
 }
  
@@ -69,6 +70,7 @@ a{
     color:white;
     margin-left: auto;
     margin-right: auto;
+    text-decoration: none;
 }
 
 p{
