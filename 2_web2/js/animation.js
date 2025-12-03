@@ -29,7 +29,7 @@ function draw(){
         x=1;
 
     }else{
-        ctx_image.drawImage(img_ski, x ,5,30,30);
+        ctx_image.drawImage(img_ski, x ,5,80,80);
         x=x+dx;
         
     }
