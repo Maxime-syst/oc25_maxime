@@ -120,16 +120,12 @@ Avec le style suivant pour permettre l'affichage en ligne.
 }
 
 ```
-Cela facilite ensuite, le fonctionnement des variables, en ayant déjà certaines valeurs fixes.
+Cela facilite ensuite, le fonctionnement du site, en reliant les unes aux autres, les pages principales. 
 
-### Variables
-Ensuite, nous avons commencer par définir une fonction qui permet de faire fonctionner le capteur à ultrason, dans le but de détecter des objets, qui se trouveraient devant le robot.
-```python
-def distance_cm():
-    trigger.write_digital(1)
-    trigger.write_digital(0)
-    distance = time_pulse_us(echo,1)/2e6*340
-    return max(0, min(400, round(distance*100)))
+### Pages présentatives
+Ensuite, nous avons deux pages qui permettent de faire le choix entre les randonnées, une par saison.
+```html
+
 ```
 
 Nous avons ensuite créé une variable qui permet de colorer les LED du robot de manière différente, à chaque moment de la mission A-->B
