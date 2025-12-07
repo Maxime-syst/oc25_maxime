@@ -84,7 +84,40 @@ Cette page comporte une barre d'accueil qui est également sur toutes les autres
 Avec le style suivant pour permettre l'affichage en ligne.
 
 ```css
+#navigation {
+    background-color:red ;
+    padding-top: 1px;
+    padding-bottom:1px;
+    text-decoration: none;
+    overflow: hidden;
 
+}
+
+#navigation canvas{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; 
+    z-index: 0;    
+}
+ 
+#navigation ul{
+    /* border:solid 1px blue; */
+    position: relative;
+    width: fit-content;
+    padding-left: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#navigation li {
+    display:inline;
+    /* border:solid 1px red; */
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
 
 ```
 Cela facilite ensuite, le fonctionnement des variables, en ayant déjà certaines valeurs fixes.
