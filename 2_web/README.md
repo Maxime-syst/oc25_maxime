@@ -317,14 +317,87 @@ a{
 Avec le style CSS suivant :
 
 ```css
+body{ 
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: white;
+    background-color:  black;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+h1{
+    color: white;
+    background-color: red;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2{
+    color:red;
+}
+
+
+body{
+    border: solid 1px rgb(144, 49,47); 
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#navigation {
+    background-color:red ;
+    padding-top: 1px;
+    padding-bottom:1px;
+    text-decoration: none;
+    overflow: hidden;
+
+}
+
+#navigation canvas{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; 
+    z-index: 0;    
+}
+ 
+#navigation ul{
+    /* border:solid 1px blue; */
+    position: relative;
+    width: fit-content;
+    padding-left: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#navigation li {
+    display:inline;
+    /* border:solid 1px red; */
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
+
+a{
+    color:white;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+}
 ```
 
 ### Animation
 
-Nous avons, ensuite assembler plusieurs variables pour en définir d'autre plus précises et qui permettent au robot de réaliser une partie complète de la mission.
+En ce qui concerne l'animation j'ai choisi de l'insérer diractement dans la barre d'accueil, pour qu'elle soit disctre et rentre en harmonie avec le reste du site.
 
-Premierement, nous avons fait une variable qui permet de suivre une ligne jusqu'à ce que le robot détecte un objet. Nous avons inclus la notion de temps pour que le robot puisse revenir approximativement à la même place une fois le travail effectué.
+##Javascript
+
 ```js
+```
 
 ```
 
