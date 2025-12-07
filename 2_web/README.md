@@ -171,159 +171,108 @@ Ensuite, nous avons deux pages qui permettent de faire le choix entre les randon
 
 Les deux pages sont similaires et avec le style CSS suivant :
 ```css
+body{ 
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: red;
+    background-color:  black;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+h1{
+    color: white;
+    background-color: red;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#valais{
+
+    color:white;
+    background-color: red;
+    border-radius: 18;
+    padding-right: -3cm;
+}
+
+#vaud{
+
+    color:white;
+    background-color: red;
+    border-radius: 18;
+
+}
+
+body{
+    border: solid 1px rgb(144, 49,47); 
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#navigation {
+    background-color:red ;
+    padding-top: 1px;
+    padding-bottom:1px;
+    text-decoration: none;
+    overflow: hidden;
+
+}
+
+#navigation canvas{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; 
+    z-index: 0;    
+}
+ 
+#navigation ul{
+    /* border:solid 1px blue; */
+    position: relative;
+    width: fit-content;
+    padding-left: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#navigation li {
+    display:inline;
+    /* border:solid 1px red; */
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
+
+a{
+    color:white;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+}
 
 ```
 
-Nous avons fait une variable qui permet d'ouvrir la pince
-```python
-def grip_open():
-    robot.goToPosition(1, GRIP_OPEN)
+## Pages pour les tours 
+##HTML
+```html
+
 ```
-Et une pour la fermer
-```python
-def grip_close():
-    robot.goToPosition(1, GRIP_CLOSED)
-```
-Ensuite nous avons définit une variable, qui permet de suivre une ligne, grâce aux capteurs infrarouges, qui se situent en dessous de lui.
-```python
-def follow_line_step(base=LINE_SPEED, k=LINE_K):
-    left = pin1.read_analog()
-    right = pin2.read_analog()
-    # erreur: positif si la ligne est plus à droite (right < left)
-    error = (left - right)
-    correction = int(k * error)
-    # limite les vitesses
-    l = max(-100, min(100, base - correction))
-    r = max(-100, min(100, base + correction))
-    robot.move(l, r)
+Avec le style CSS suivant :
+
+```css
 ```
 
-### Assemblage variable
+### Animation
 
 Nous avons, ensuite assembler plusieurs variables pour en définir d'autre plus précises et qui permettent au robot de réaliser une partie complète de la mission.
 
 Premierement, nous avons fait une variable qui permet de suivre une ligne jusqu'à ce que le robot détecte un objet. Nous avons inclus la notion de temps pour que le robot puisse revenir approximativement à la même place une fois le travail effectué.
-```python
-def follow_line_until_object(dist_thresh=DIST_THRESH_PICK, max_ms=30000):
-    set_all(blue)  # suivi A→B
-    t0 = running_time()
-    while running_time() - t0 < max_ms:
-        d = distance_cm()
-        if d <= DIST_APPROACH_MAX:
-            base = max(12, int(LINE_SPEED * 0.6))
-        else:
-            base = LINE_SPEED
-        follow_line_step(base=base)
-        if d <= dist_thresh and d > 0:
-            robot.move(0, 0)
-            return running_time() - t0, True
-        sleep(5)
-    robot.move(0, 0)
-    return running_time() - t0, False
+```js
+
 ```
 
-Ensuite nous avons fait une variable qui permet au robot d'approcher l'objet, une fois qu'il l'à détecté.
-```python
-def approach_until(dist_thresh=DIST_THRESH_PICK):
-    set_all(cyan)
-    while True:
-        d = distance_cm()
-        if 0 < d <= dist_thresh:
-            robot.move(0, 0)
-            return True
-        robot.move(APPROACH_SPEED, APPROACH_SPEED)
-        sleep(10)
-```
-
-Puis une variable pour qu'il se retourne
-```python
-def turn_180():
-    set_all(magenta)
-    tourner(180)
-    robot.move(0, 0)
-```
-
-Et enfin, pour qu'il retourne à son point initial en suivant un tracé
-```python
-def follow_line_for_ms(duration_ms):
-    set_all(yellow)  # retour B→A
-    t0 = running_time()
-    while running_time() - t0 < duration_ms:
-        follow_line_step(base=LINE_SPEED)
-        sleep(5)
-    robot.move(0, 0)
-```
-
-### Code global
-
-Finalement, nous avons tout mis ensemble pour définir une seule variable qui réalise l'entier du travail.
-```python
-def mission_A_to_B_pick_and_return():
-    
-    display.show('A')
-    grip_open()
-    set_all(blue)
-
-    # 1) A -> B en suivant la ligne jusqu'à l'objet
-    t_out, found = follow_line_until_object()
-    if not found:
-        set_all(red)
-        display.scroll("OBJ?", 60)
-        return  # échec: pas d'objet détecté
-
-    # 2) Approche fine si besoin
-
-    
-    #reculer avant de chopper l'objet
-    set_all(orange)
-    avancer(-BACK_OFF_CM)
-    sleep(150)
-    
-    # 4) 180°
-    turn_180()
-    sleep(200)
-
-    #reculer avant de chopper l'objet
-    set_all(orange)
-    avancer(-BACK_OFF_CM)
-    sleep(150)
-    
-    # 3) Attraper l'objet
-    set_all(orange)
-    grip_close()
-    sleep(400)
-
-    
-    # 5) Retour vers A 
-    set_all(blue)
-    t_back_target = t_out + RETURN_BONUS_MS
-    follow_line_for_ms(t_back_target)
-
-    # 6) Déposer l'objet à A
-    set_all(green)
-    grip_open()
-    sleep(400)
-
-    # Reculer légèrement pour dégager la pince
-    robot.move(-30, -30, RELEASE_BACK_MS)
-    robot.move(0, 0)
-    set_all(white)
-    display.show('A')
-```
-
-### Code pour la télécommande
-
-Finalement, nous avons mis un code final que nous avons attribuer à l'une des variable de la télécommande
-```python
- if prog == 3:
-        msg = radio.receive()
-        if msg == 'd':
-            robot.move(0, 0)
-            set_all(red)
-        elif msg == 'u':
-            mission_A_to_B_pick_and_return()
-        # Petit blink pour montrer l’attente
-        blink(0, 600, 120, blue, black)
-        sleep(5)
-```
 
