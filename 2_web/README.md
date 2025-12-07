@@ -1,30 +1,185 @@
 # oc25_maxime
-## Présentation personnel    
-Je m'appelle ***Maxime Genoux***, J'ai 19 ans et je suis actuellement étudiant au [gymnase du Bugnon](https://www.gymnasedubugnon.ch), sur le sit de l'ours.
-Je suis une personne sportif, jusqu'à l'année dernière je faisais du unihockey à haut-niveau, apprécie et pratique également d'autres sport comme le vélo, 
-la course à pied, l'escalade ainsi que l'alpinisme.
 
-## Pourquoi cette _OC_ ? 
-J'ai choisi cette OC, car j'ai plutôt bien apprécié les deux années précédentes d'informatique, j'ai donc choisi de poursuivre cette matière en 3ème année.
-J'ai également le projet d'étudié l'informatique après le gymnase, j'éspère donc que cette option pourra déjà un peu m'aider pour mes projets futurs.
+## Site web
 
-## Exemple de programmation
-La boucle __for__ parcourt une liste d’éléments un par un. À chaque itération, elle prend un élément de la liste et effectue une action avec lui. Par exemple, si tu as une liste de fruits, la boucle va afficher chaque fruit un à un.
-```python
-fruits = ["pomme", "banane", "orange"]
-for fruit in fruits:
-    print(fruit)
+Pour réaliser ce travail, j'ai travailler avec html css et javascript, dans le but de proposer un site qui permet d'avoir accès à une liste de randonnée possible à faire. 
+
+
+### page accueil
+## HTML
+```html
 
 ```
-La boucle __for__ avec __range()__ est utilisée pour répéter une action un nombre précis de fois. Par exemple, range(10) génère les nombres de 0 à 9, elle se répète donc 10 fois.
+Cela facilite ensuite, le fonctionnement des variables, en ayant déjà certaines valeurs fixes.
+
+### Variables
+Ensuite, nous avons commencer par définir une fonction qui permet de faire fonctionner le capteur à ultrason, dans le but de détecter des objets, qui se trouveraient devant le robot.
 ```python
-for i in range (10):
-  print(i)
+def distance_cm():
+    trigger.write_digital(1)
+    trigger.write_digital(0)
+    distance = time_pulse_us(echo,1)/2e6*340
+    return max(0, min(400, round(distance*100)))
 ```
-La boucle __while__ est une boucle qui se répète tant que la condition est correcte.
+
+Nous avons ensuite créé une variable qui permet de colorer les LED du robot de manière différente, à chaque moment de la mission A-->B
 ```python
-compteur = 0
-while compteur < 5:
-    compteur += 1
+def set_all(color):
+    for i in range(4):
+        np[i] = color
+    np.show()
+```
+
+Nous avons fait une variable qui permet d'ouvrir la pince
+```python
+def grip_open():
+    robot.goToPosition(1, GRIP_OPEN)
+```
+Et une pour la fermer
+```python
+def grip_close():
+    robot.goToPosition(1, GRIP_CLOSED)
+```
+Ensuite nous avons définit une variable, qui permet de suivre une ligne, grâce aux capteurs infrarouges, qui se situent en dessous de lui.
+```python
+def follow_line_step(base=LINE_SPEED, k=LINE_K):
+    left = pin1.read_analog()
+    right = pin2.read_analog()
+    # erreur: positif si la ligne est plus à droite (right < left)
+    error = (left - right)
+    correction = int(k * error)
+    # limite les vitesses
+    l = max(-100, min(100, base - correction))
+    r = max(-100, min(100, base + correction))
+    robot.move(l, r)
+```
+
+### Assemblage variable
+
+Nous avons, ensuite assembler plusieurs variables pour en définir d'autre plus précises et qui permettent au robot de réaliser une partie complète de la mission.
+
+Premierement, nous avons fait une variable qui permet de suivre une ligne jusqu'à ce que le robot détecte un objet. Nous avons inclus la notion de temps pour que le robot puisse revenir approximativement à la même place une fois le travail effectué.
+```python
+def follow_line_until_object(dist_thresh=DIST_THRESH_PICK, max_ms=30000):
+    set_all(blue)  # suivi A→B
+    t0 = running_time()
+    while running_time() - t0 < max_ms:
+        d = distance_cm()
+        if d <= DIST_APPROACH_MAX:
+            base = max(12, int(LINE_SPEED * 0.6))
+        else:
+            base = LINE_SPEED
+        follow_line_step(base=base)
+        if d <= dist_thresh and d > 0:
+            robot.move(0, 0)
+            return running_time() - t0, True
+        sleep(5)
+    robot.move(0, 0)
+    return running_time() - t0, False
+```
+
+Ensuite nous avons fait une variable qui permet au robot d'approcher l'objet, une fois qu'il l'à détecté.
+```python
+def approach_until(dist_thresh=DIST_THRESH_PICK):
+    set_all(cyan)
+    while True:
+        d = distance_cm()
+        if 0 < d <= dist_thresh:
+            robot.move(0, 0)
+            return True
+        robot.move(APPROACH_SPEED, APPROACH_SPEED)
+        sleep(10)
+```
+
+Puis une variable pour qu'il se retourne
+```python
+def turn_180():
+    set_all(magenta)
+    tourner(180)
+    robot.move(0, 0)
+```
+
+Et enfin, pour qu'il retourne à son point initial en suivant un tracé
+```python
+def follow_line_for_ms(duration_ms):
+    set_all(yellow)  # retour B→A
+    t0 = running_time()
+    while running_time() - t0 < duration_ms:
+        follow_line_step(base=LINE_SPEED)
+        sleep(5)
+    robot.move(0, 0)
+```
+
+### Code global
+
+Finalement, nous avons tout mis ensemble pour définir une seule variable qui réalise l'entier du travail.
+```python
+def mission_A_to_B_pick_and_return():
+    
+    display.show('A')
+    grip_open()
+    set_all(blue)
+
+    # 1) A -> B en suivant la ligne jusqu'à l'objet
+    t_out, found = follow_line_until_object()
+    if not found:
+        set_all(red)
+        display.scroll("OBJ?", 60)
+        return  # échec: pas d'objet détecté
+
+    # 2) Approche fine si besoin
+
+    
+    #reculer avant de chopper l'objet
+    set_all(orange)
+    avancer(-BACK_OFF_CM)
+    sleep(150)
+    
+    # 4) 180°
+    turn_180()
+    sleep(200)
+
+    #reculer avant de chopper l'objet
+    set_all(orange)
+    avancer(-BACK_OFF_CM)
+    sleep(150)
+    
+    # 3) Attraper l'objet
+    set_all(orange)
+    grip_close()
+    sleep(400)
+
+    
+    # 5) Retour vers A 
+    set_all(blue)
+    t_back_target = t_out + RETURN_BONUS_MS
+    follow_line_for_ms(t_back_target)
+
+    # 6) Déposer l'objet à A
+    set_all(green)
+    grip_open()
+    sleep(400)
+
+    # Reculer légèrement pour dégager la pince
+    robot.move(-30, -30, RELEASE_BACK_MS)
+    robot.move(0, 0)
+    set_all(white)
+    display.show('A')
+```
+
+### Code pour la télécommande
+
+Finalement, nous avons mis un code final que nous avons attribuer à l'une des variable de la télécommande
+```python
+ if prog == 3:
+        msg = radio.receive()
+        if msg == 'd':
+            robot.move(0, 0)
+            set_all(red)
+        elif msg == 'u':
+            mission_A_to_B_pick_and_return()
+        # Petit blink pour montrer l’attente
+        blink(0, 600, 120, blue, black)
+        sleep(5)
 ```
 
