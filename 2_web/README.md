@@ -8,6 +8,63 @@ Pour réaliser ce travail, j'ai travailler avec html css et javascript, dans le 
 ### page accueil
 ## HTML
 ```html
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>
+           Site Maxime Genoux
+        </title>
+        <meta charset="UTF-8">
+         <link rel="stylesheet" href="css/style-accueil.css">
+    </head>
+
+    <body>
+        <div id="navigation">
+            <canvas id="image"></canvas>
+            <script src="js/animation.js"></script>
+            <ul>
+                <li><a href="accueil.html">Accueil</a></li>
+                <li><a href="été.html">Été</a></li>
+                <li><a href="hiver.html">Hiver</a></li>
+
+            </ul>
+        </div>
+        <h1> Site Maxime Genoux</h1>
+
+        <br>
+        <p id="texte">
+            Bienvenu sur mon site web, ici vous pourrez trouver une liste de randonnées,
+            que vous pourrez réaliser dans les alentours. Que ce soit sur le canton de Vaud, ou en Valais, 
+            il y en a pour tous les goûts, et également pour tous les niveaux. 
+            Ces randonnées couvrent aussi un programme annuel, que se soit en hiver,
+            pour marcher sur la neige, faire de la raquette ou du ski de randonnée,
+            Ansi qu'en été pour de la randonné pédestre.
+
+        </p>
+
+        <br>
+
+        <p id="texte">
+            Pour ceux qui cherche une escapade plutôt estivale
+        </p>
+
+        <br>
+
+        <h2>  <a class="link_centre" href ="été.html">  
+            <img class="img_centre" src="images/image1.png" width="300"> </a> </h2>
+
+        <br>
+
+        <p id="texte">
+            Et pour ceux qui souhaite s'évader dans les montagnes couvertes de neige
+        </p>
+
+
+        <h2>  <a class="link_centre" href ="hiver.html"> 
+            <img class="img_centre" src="images/ski.jpeg" width="300"> </a> </h2>
+        
+        <br>
 
 ```
 Cela facilite ensuite, le fonctionnement des variables, en ayant déjà certaines valeurs fixes.
