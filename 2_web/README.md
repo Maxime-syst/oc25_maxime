@@ -67,6 +67,26 @@ Pour réaliser ce travail, j'ai travailler avec html css et javascript, dans le 
         <br>
 
 ```
+Cette page comporte une barre d'accueil qui est également sur toutes les autres page. 
+```html
+ <div id="navigation">
+            <canvas id="image"></canvas>
+            <script src="js/animation.js"></script>
+            <ul>
+                <li><a href="accueil.html">Accueil</a></li>
+                <li><a href="été.html">Été</a></li>
+                <li><a href="hiver.html">Hiver</a></li>
+
+            </ul>
+        </div>
+
+```
+Avec le style suivant pour permettre l'affichage en ligne.
+
+```css
+
+
+```
 Cela facilite ensuite, le fonctionnement des variables, en ayant déjà certaines valeurs fixes.
 
 ### Variables
