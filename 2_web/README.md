@@ -5,8 +5,8 @@
 Pour réaliser ce travail, j'ai travailler avec html css et javascript, dans le but de proposer un site qui permet d'avoir accès à une liste de randonnée possible à faire. 
 
 
-### page accueil
-## HTML
+## page accueil
+### HTML
 ```html
 <!DOCTYPE html>
 
@@ -83,6 +83,8 @@ Cette page comporte une barre d'accueil qui est également sur toutes les autres
 ```
 Avec le style suivant pour permettre l'affichage en ligne.
 
+### CSS
+
 ```css
 #navigation {
     background-color:red ;
@@ -125,15 +127,51 @@ Cela facilite ensuite, le fonctionnement du site, en reliant les unes aux autres
 ### Pages présentatives
 Ensuite, nous avons deux pages qui permettent de faire le choix entre les randonnées, une par saison.
 ```html
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>
+           Site Maxime Genoux
+        </title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/style-hiver.css">
+    </head>
+
+    <div id="navigation">
+        <canvas id="image"></canvas>
+        <script src="js/animation.js"></script>
+        <ul>
+            <li><a href="accueil.html">Accueil</a></li>
+            <li><a href="été.html">Été</a></li>
+            <li><a href="hiver.html">Hiver</a></li>
+
+        </ul>
+    </div>
+        
+    <h1> Randonnée d'hiver </h1>
+    <br>
+
+    <h2 id="valais"> Randonnée à pied ou en raquettes </h2>
+    <ul>
+        <li> <a href="Tour_go.html">Le Gô</a> </li>
+        <li> <a href="Fouly.html">La Fouly - Prayon</a></li>
+    
+    </ul>
+
+    <br>
+
+    <h2 id="vaud"> Randonnée à ski </h2>
+    <ul>
+        <li> <a href="Arolla.html"> Montée à la cabane des Vignettes</a></li>
+        
+    </ul>
 
 ```
 
-Nous avons ensuite créé une variable qui permet de colorer les LED du robot de manière différente, à chaque moment de la mission A-->B
-```python
-def set_all(color):
-    for i in range(4):
-        np[i] = color
-    np.show()
+Les deux pages sont similaires et avec le style CSS suivant :
+```css
+
 ```
 
 Nous avons fait une variable qui permet d'ouvrir la pince
