@@ -1,6 +1,6 @@
 body{ 
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    color: red;
+    color: white;
     background-color:  black;
     border: solid 1px rgb(144, 49,47); 
     max-width: 1000px;
@@ -47,11 +47,24 @@ img.img_centre {
     background-color:red ;
     padding-top: 1px;
     padding-bottom:1px;
+    text-decoration: none;
+    overflow: hidden;
 
+}
+
+#navigation canvas{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; 
+    z-index: 0;    
 }
  
 #navigation ul{
     /* border:solid 1px blue; */
+    position: relative;
     width: fit-content;
     padding-left: 0px;
     margin-left: auto;
@@ -69,6 +82,7 @@ a{
     color:white;
     margin-left: auto;
     margin-right: auto;
+    text-decoration: none;
 }
 
 p{

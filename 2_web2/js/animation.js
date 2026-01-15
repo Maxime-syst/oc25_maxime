@@ -6,10 +6,10 @@ img_ski.onload = function() {
     ctx_image.drawImage(img_ski,0,0);
 }
 // img.src = "/2_web/site_web/images/image1.png";
-img_ski.src="2_web2\images\ski-svgrepo-com.svg";
+img_ski.src="images/animation.svg";
 
-const canvasSizeX = 500;
-const canvasSizeY = 500;
+const canvasSizeX = canvas_image.width= canvas_image.clientWidth;
+const canvasSizeY = canvas_image.height= canvas_image.clientHeight;
 const dx=1;
 const dy=1;
 var x=1;
@@ -18,21 +18,20 @@ var y=1;
 
 
 function init(){
-    img_ski.src="2_web2\images\ski-svgrepo-com.svg";
+    img_ski.src="images/animation.svg";
     window.requestAnimationFrame(draw);
 }
 
 function draw(){
-    ctx_image.clearRect(0,0,500,500);
+    ctx_image.setTransform(1,0,0,1,0,0)
+    ctx_image.clearRect(0,0,canvasSizeX,canvasSizeY);
     if ( x> canvasSizeX) {
-        ctx_image.translate(-canvasSizeX, -canvasSizeY);
         x=1;
-        y=1;
+
     }else{
-        ctx_image.drawImage(img_ski, 5,5,150,150);
-        ctx_image.translate(dx,dy);
+        ctx_image.drawImage(img_ski, x ,5,80,80);
         x=x+dx;
-        y=y+dy;
+        
     }
     window.requestAnimationFrame(draw);
 }
