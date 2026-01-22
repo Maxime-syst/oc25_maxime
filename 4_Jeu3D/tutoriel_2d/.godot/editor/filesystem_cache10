@@ -1,10 +1,10 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1769085639
+::res://::1769086554
 hud.gd::GDScript::7012870623668339569::1769085423::0::1::::<>CanvasLayer<><>0<>0<><>::
 hud.tscn::PackedScene::9207987580734576688::1769085423::0::1::::<><><>0<>0<><>::uid://cu8pejepyw5sl::::res://dodge_the_creeps_2d_assets/fonts/Xolonium-Regular.ttf<>uid://c66c7pq00jrun::::res://hud.gd
 icon.svg::CompressedTexture2D::8855790081758950267::1768481021::1769085639::1::::<><><>0<>0<>ba4e5bc2fe2e00982b588165df3cc8db<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 main.gd::GDScript::2631803993157490357::1769085423::0::1::::<>Node<><>0<>0<><>::
-Main.tscn::PackedScene::6943881262364201670::1769085423::0::1::::<><><>0<>0<><>::uid://bdq4or54qi2on::::res://main.gd<>uid://b035fodg8tfp7::::res://player.tscn<>uid://d4gohe61gf72s::::res://hud.tscn<>uid://b7btcskfi02bx::::res://dodge_the_creeps_2d_assets/art/House In a Forest Loop.ogg<>uid://d0nt7syvydn2n::::res://dodge_the_creeps_2d_assets/art/gameover.wav
+Main.tscn::PackedScene::6943881262364201670::1769085749::0::1::::<><><>0<>0<><>::uid://bdq4or54qi2on::::res://main.gd<>uid://b035fodg8tfp7::::res://player.tscn<>uid://d4gohe61gf72s::::res://hud.tscn<>uid://b7btcskfi02bx::::res://dodge_the_creeps_2d_assets/art/House In a Forest Loop.ogg<>uid://d0nt7syvydn2n::::res://dodge_the_creeps_2d_assets/art/gameover.wav
 mob.gd::GDScript::1406709369007646231::1769085423::0::1::::<>RigidBody2D<><>0<>0<><>::
 mob.tscn::PackedScene::2757774165617352326::1769085423::0::1::::<><><>0<>0<><>::uid://ubokeieqfdkp::::res://mob.gd<>uid://bdi0dseg6qvg4::::res://dodge_the_creeps_2d_assets/art/enemyFlyingAlt_1.png<>uid://wyc8s7kh302g::::res://dodge_the_creeps_2d_assets/art/enemyFlyingAlt_2.png<>uid://dxmchyr2l04eb::::res://dodge_the_creeps_2d_assets/art/enemySwimming_1.png<>uid://dvpnyq8lf24oe::::res://dodge_the_creeps_2d_assets/art/enemySwimming_2.png<>uid://bftsp4bfyweui::::res://dodge_the_creeps_2d_assets/art/enemyWalking_1.png<>uid://b1pp10qi8wyo6::::res://dodge_the_creeps_2d_assets/art/enemyWalking_2.png
 player.gd::GDScript::1879400033376965099::1769085423::0::1::::<>Area2D<><>0<>0<><>::
