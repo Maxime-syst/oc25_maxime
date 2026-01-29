@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://dc8mgs8cwpdv3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h61uo"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f2hhy"]
+albedo_color = Color(0.827451, 0.49803922, 0.2, 1)
+roughness = 0.81
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbo3s"]
+albedo_color = Color(1, 0.38039216, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wbnlm"]
+albedo_color = Color(1, 0.38039216, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0hhob"]
+albedo_color = Color(1, 0.38039216, 0, 1)
+
+[node name="Node3D" type="Node3D" unique_id=141225838]
+
+[node name="room" type="CSGBox3D" parent="." unique_id=731663894]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006688118, 3.741877, -0.0056467056)
+flip_faces = true
+size = Vector3(7.5, 7.5, 7.5)
+
+[node name="Table" type="CSGBox3D" parent="." unique_id=730448728]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3608155, 1, -1.994411)
+size = Vector3(3.2, 0.15, 1.5)
+
+[node name="pied" type="CSGBox3D" parent="Table" unique_id=1131110348]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4953493, -0.5, 0.6422323)
+size = Vector3(0.2, 1, 0.2)
+material = SubResource("StandardMaterial3D_h61uo")
+
+[node name="pied2" type="CSGBox3D" parent="Table" unique_id=1538142503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4978054, -0.5, -0.6457719)
+size = Vector3(0.2, 1, 0.2)
+material = SubResource("StandardMaterial3D_h61uo")
+
+[node name="pied3" type="CSGBox3D" parent="Table" unique_id=1856843225]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4914706, -0.5, -0.62302226)
+size = Vector3(0.2, 1, 0.2)
+material = SubResource("StandardMaterial3D_h61uo")
+
+[node name="pied4" type="CSGBox3D" parent="Table" unique_id=851519783]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4856818, -0.5, 0.625822)
+size = Vector3(0.2, 1, 0.2)
+material = SubResource("StandardMaterial3D_h61uo")
+
+[node name="bed" type="CSGCombiner3D" parent="." unique_id=1702928070]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6633761, -11.783184)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="bed" unique_id=410658391]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1369998, -0.3247323, 14.040356)
+size = Vector3(3.15, 0.5, 2.75)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="bed/CSGBox3D2" unique_id=669636079]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0014648438, -0.060750246, -0.0076971054)
+size = Vector3(3.2, 0.45, 2.8)
+material = SubResource("StandardMaterial3D_f2hhy")
+
+[node name="pillow" type="CSGCombiner3D" parent="bed/CSGBox3D2" unique_id=1029583976]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3419673, 0.3247323, -3.669012)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="bed/CSGBox3D2/pillow" unique_id=1486134182]
+transform = Transform3D(0.7, 0, 0, 0, 0.9, 0, 0, 0, 1.1, -4.3598046, -0.14946306, 2.917923)
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_vbo3s")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="bed/CSGBox3D2/pillow" unique_id=2102206202]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 1.2, -4.361187, -0.050528347, 3.6608715)
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_wbnlm")
+
+[node name="CSGSphere3D3" type="CSGSphere3D" parent="bed/CSGBox3D2/pillow" unique_id=2073952318]
+transform = Transform3D(0.8, 0, 0, 0, 0.6, 0, 0, 0, 1.1, -4.290728, -0.037207484, 4.4392715)
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_0hhob")
+
+[node name="lampe" type="CSGCylinder3D" parent="." unique_id=851372097]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1014981, 1.3905953, -0.1771195)
+radius = 0.05
+height = 2.7
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="lampe" unique_id=1492785552]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3367763, -0.00830555)
+radius = 0.2
+height = 0.11
+sides = 24
+cone = true

@@ -1,3 +1,45 @@
 [gd_scene format=3 uid="uid://bdsglsdfc0mqf"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6aetm"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wnhkg"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2ybn"]
+albedo_color = Color(0, 0.003921569, 1, 1)
+
 [node name="Node3D" type="Node3D" unique_id=1598871685]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1554768723]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010048389, 0, 0)
+material = SubResource("StandardMaterial3D_6aetm")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=1812259735]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40933514, 0.62950647, -0.40513003)
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_wnhkg")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=818251489]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0100484, 0, 0)
+material = SubResource("StandardMaterial3D_6aetm")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="CSGBox3D2" unique_id=842188683]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39928675, 0.62950647, -0.40513003)
+operation = 1
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_y2ybn")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=1718257863]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.418152, 0, 0)
+material = SubResource("StandardMaterial3D_6aetm")
+
+[node name="CSGSphere3D3" type="CSGSphere3D" parent="CSGBox3D3" unique_id=1225266327]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40153027, 0.62950647, -0.40513003)
+operation = 2
+use_collision = true
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_wnhkg")
