@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bs26hmel0qfxo"]
+
+[ext_resource type="PackedScene" uid="uid://cd8n5dwrmgcoe" path="res://lampe.tscn" id="1_m0re0"]
+[ext_resource type="PackedScene" uid="uid://bt7ulg61hbacs" path="res://room.tscn" id="1_y8fub"]
+[ext_resource type="PackedScene" uid="uid://chyksqn8qd02a" path="res://bed.tscn" id="2_y8fub"]
+[ext_resource type="PackedScene" uid="uid://dc7ajfweurjq3" path="res://bookshelf.tscn" id="3_jtd2r"]
+[ext_resource type="PackedScene" uid="uid://di1w3qkwf1ynx" path="res://armoire.tscn" id="4_g0bis"]
+[ext_resource type="PackedScene" uid="uid://58v0jbden2kr" path="res://table.tscn" id="5_7q6ex"]
+
+[node name="Node3D" type="Node3D" unique_id=381751247]
+
+[node name="Room" parent="." unique_id=1441726984 instance=ExtResource("1_y8fub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="lampe2" parent="." unique_id=899569123 instance=ExtResource("1_m0re0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4132524, 1.638924, -2.494063)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="lampe2" unique_id=1357096763]
+transform = Transform3D(1, 0, 0, 0, -0.3086186, 0.9511859, 0, -0.9511859, -0.3086186, 0.09459686, 1.2536656, 0.031415462)
+light_color = Color(1, 0.7313169, 0.6561749, 1)
+light_energy = 9.104
+light_indirect_energy = 1.33
+light_volumetric_fog_energy = 5.752
+spot_range = 3.258
+
+[node name="bed" parent="." unique_id=1874554444 instance=ExtResource("2_y8fub")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.238886, 0.849416, 0.5087861)
+
+[node name="bookshelf" parent="." unique_id=221850709 instance=ExtResource("3_jtd2r")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.36557877, 0.8855063, -2.653141)
+size = Vector3(1.1429688, 1.2, 1.2)
+
+[node name="armoire" parent="." unique_id=791857931 instance=ExtResource("4_g0bis")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.27099025, 0.23645306, 0.008373061)
+
+[node name="Table" parent="." unique_id=1717884425 instance=ExtResource("5_7q6ex")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.126367, 0.2917663, 1.2240875)
