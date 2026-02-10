@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://djkt8nw8orcnv"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mb7ju"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kqe62"]
+particle_flag_disable_z = true
+inherit_velocity_ratio = 1.0
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 98, 0)
+
+[sub_resource type="CurveTexture" id="CurveTexture_bkak3"]
+
+[sub_resource type="Gradient" id="Gradient_1g83g"]
+offsets = PackedFloat32Array(0.012295082, 1)
+colors = PackedColorArray(5.583167e-06, 0.71309525, 0, 1, 1, 0.07058824, 0.13333334, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_26dmw"]
+gradient = SubResource("Gradient_1g83g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jxgxf"]
+particle_flag_disable_z = true
+inherit_velocity_ratio = 1.0
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 98, 0)
+color = Color(0, 1, 0, 1)
+color_ramp = SubResource("GradientTexture1D_26dmw")
+alpha_curve = SubResource("CurveTexture_bkak3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w4a7f"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 78.28
+angle_min = 1.0728835e-05
+angle_max = 1.0728835e-05
+gravity = Vector3(0, 98, 0)
+
+[node name="Vfx2D" type="Node2D" unique_id=584336226]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=763079938]
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_mb7ju")
+
+[node name="Label" type="Label" parent="GPUParticles2D" unique_id=279964678]
+offset_left = -48.0
+offset_top = -42.0
+offset_right = 49.0
+offset_bottom = -19.0
+text = "point source"
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="." unique_id=1369038826]
+position = Vector2(-255, 3)
+amount = 80
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_kqe62")
+
+[node name="Label" type="Label" parent="GPUParticles2D3" unique_id=860526224]
+offset_left = -85.0
+offset_top = -125.0
+offset_right = 89.0
+offset_bottom = -24.0
+text = "spaw initial velocity 50
+spread = +/- 180 de
+80 particles
+1s"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="." unique_id=1341301218]
+position = Vector2(-252, 359)
+amount = 80
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_kqe62")
+
+[node name="Label" type="Label" parent="GPUParticles2D4" unique_id=517623576]
+offset_left = -85.0
+offset_top = -125.0
+offset_right = 89.0
+offset_bottom = -24.0
+text = "spaw initial velocity 50
+explosiveness 0.9
+80 particles
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="." unique_id=869804089]
+position = Vector2(1, 360)
+amount = 80
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_jxgxf")
+
+[node name="Label" type="Label" parent="GPUParticles2D5" unique_id=1409599868]
+offset_left = -85.0
+offset_top = -125.0
+offset_right = 89.0
+offset_bottom = -24.0
+text = "spaw initial velocity 50
+explosiveness 0.9
+80 particles
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." unique_id=645105053]
+position = Vector2(157, 0)
+amount = 1000
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_w4a7f")
+
+[node name="Label" type="Label" parent="GPUParticles2D2" unique_id=268810526]
+offset_left = -49.0
+offset_top = -88.0
+offset_right = 50.0
+offset_bottom = -13.0
+text = "spaw sphere
+100 particles
+          1s"
