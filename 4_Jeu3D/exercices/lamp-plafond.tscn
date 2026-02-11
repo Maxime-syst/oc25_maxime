@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://c5vr3wcfvyxh7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ovi5a"]
+albedo_color = Color(1, 0.6117647, 0.02745098, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o4t4l"]
+albedo_color = Color(1, 0.6117647, 0.02745098, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7cqj2"]
+albedo_color = Color(1, 0.8901961, 0.8039216, 1)
+metallic = 1.0
+metallic_specular = 1.0
+
+[node name="lamp" type="Node3D" unique_id=708966805]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=226345334]
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=1211732157]
+radius = 0.55
+height = 0.4
+sides = 30
+smooth_faces = false
+material = SubResource("StandardMaterial3D_ovi5a")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D/CSGCylinder3D2" unique_id=1513669066]
+operation = 2
+calculate_tangents = false
+height = 0.961
+sides = 33
+smooth_faces = false
+material = SubResource("StandardMaterial3D_o4t4l")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=996962191]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0.18865883, 0)
+radius = 0.01
+height = 1.0
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D/CSGCylinder3D" unique_id=1127630659]
+transform = Transform3D(1, -4.3711392e-08, -4.371139e-08, -4.3711392e-08, -4.3711385e-08, -1, 4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+radius = 0.01
+height = 1.0
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="CSGCombiner3D/CSGCylinder3D" unique_id=1449971233]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.01854387, 8.1057827e-10, 0)
+radius = 0.01
+height = 0.2
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCombiner3D/CSGCylinder3D/CSGCylinder3D3" unique_id=1064064566]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.220446e-16, -0.16790292, 0)
+radius = 0.07
+radial_segments = 29
+rings = 23
+material = SubResource("StandardMaterial3D_7cqj2")
