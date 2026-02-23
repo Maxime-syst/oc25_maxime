@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://2u2rm7j7p6q2"]
+
+[ext_resource type="Texture2D" uid="uid://dh020ceugwkp8" path="res://brackeys_vfx_bundle/particles/alpha/trace_05_a.png" id="1_kwfd8"]
+[ext_resource type="Texture2D" uid="uid://d2p5lh76m1pnn" path="res://brackeys_vfx_bundle/particles/alpha/dirt_03_a.png" id="2_ci28e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ci28e"]
+albedo_color = Color(0.53224254, 0.5322423, 0.53224236, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_agfoc"]
+emission_shape_scale = Vector3(10, 1, 10)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+collision_mode = 2
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wwtt"]
+transparency = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_kwfd8")
+
+[sub_resource type="QuadMesh" id="QuadMesh_vy4dc"]
+material = SubResource("StandardMaterial3D_6wwtt")
+size = Vector2(0.1, 0.4)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6wwtt"]
+emission_shape = 3
+emission_box_extents = Vector3(0.2, 0.2, 0.2)
+gravity = Vector3(0, 0.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vy4dc"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("2_ci28e")
+
+[sub_resource type="QuadMesh" id="QuadMesh_baj4n"]
+material = SubResource("StandardMaterial3D_vy4dc")
+size = Vector2(0.2, 0.2)
+
+[node name="Node3D" type="Node3D" unique_id=577231011]
+
+[node name="floor" type="CSGBox3D" parent="." unique_id=2013769422]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_ci28e")
+
+[node name="collision box" type="GPUParticlesCollisionBox3D" parent="." unique_id=1230714180]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+size = Vector3(20, 1, 20)
+
+[node name="rain" type="GPUParticles3D" parent="." unique_id=238342041]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23.192999, 0)
+amount = 990
+sub_emitter = NodePath("impacts")
+process_material = SubResource("ParticleProcessMaterial_agfoc")
+draw_pass_1 = SubResource("QuadMesh_vy4dc")
+
+[node name="impacts" type="GPUParticles3D" parent="rain" unique_id=719258353]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -23.166225, 5.868767)
+amount = 5000
+lifetime = 0.21000000000000002
+process_material = SubResource("ParticleProcessMaterial_6wwtt")
+draw_pass_1 = SubResource("QuadMesh_baj4n")

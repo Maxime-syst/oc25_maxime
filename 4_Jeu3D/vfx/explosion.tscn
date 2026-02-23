@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://dgdrmm1kbmbd8"]
 
+[ext_resource type="Texture2D" uid="uid://c8xsojm270ro8" path="res://brackeys_vfx_bundle/particles/alpha/circle_01_a.png" id="1_q7epf"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_7rj46"]
 size = Vector3(100, 1, 100)
 
@@ -155,6 +157,37 @@ material = SubResource("StandardMaterial3D_u1o5f")
 left_to_right = 0.0
 size = Vector3(0.1, 0.1, 0.1)
 
+[sub_resource type="Curve" id="Curve_vxas0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_j4sxf"]
+curve = SubResource("Curve_vxas0")
+
+[sub_resource type="Curve" id="Curve_m5xho"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kmxf7"]
+curve = SubResource("Curve_m5xho")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l04k4"]
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_kmxf7")
+alpha_curve = SubResource("CurveTexture_j4sxf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cf70p"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_q7epf")
+
+[sub_resource type="QuadMesh" id="QuadMesh_3xjsk"]
+material = SubResource("StandardMaterial3D_cf70p")
+size = Vector2(8, 8)
+orientation = 1
+
 [node name="Floor" type="Node3D" unique_id=1475656146]
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="." unique_id=778560103]
@@ -162,7 +195,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 size = Vector3(100, 1, 100)
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=97679942]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0020747185, -0.5061674, 0.0019245148)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012311459, -0.5061679, -0.013053894)
 mesh = SubResource("BoxMesh_7rj46")
 material = SubResource("StandardMaterial3D_q7epf")
 
@@ -207,3 +240,10 @@ explosiveness = 0.9
 visibility_aabb = AABB(-10.388026, -29.720114, -9.871683, 19.698997, 31.360132, 20.453438)
 process_material = SubResource("ParticleProcessMaterial_yxxag")
 draw_pass_1 = SubResource("PrismMesh_ftknk")
+
+[node name="shockwave" type="GPUParticles3D" parent="Explosion" unique_id=889452995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05696249, 3.991786, 0)
+amount = 1
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_l04k4")
+draw_pass_1 = SubResource("QuadMesh_3xjsk")
