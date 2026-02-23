@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dc7ajfweurjq3" path="res://bookshelf.tscn" id="3_jtd2r"]
 [ext_resource type="PackedScene" uid="uid://di1w3qkwf1ynx" path="res://armoire.tscn" id="4_g0bis"]
 [ext_resource type="PackedScene" uid="uid://58v0jbden2kr" path="res://table.tscn" id="5_7q6ex"]
+[ext_resource type="PackedScene" uid="uid://c5vr3wcfvyxh7" path="res://lamp-plafond.tscn" id="7_jtd2r"]
 
 [node name="Node3D" type="Node3D" unique_id=381751247]
 
@@ -25,7 +26,7 @@ spot_range = 3.258
 
 [node name="OmniLight3D" type="OmniLight3D" parent="lampe2" unique_id=1479249729]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02693963, 2.3436217, 0.0063045025)
-light_color = Color(1, 0.5647059, 0.44705883, 1)
+light_color = Color(1, 0.7372549, 0.57254905, 1)
 light_energy = 1.635
 light_specular = 0.0
 
@@ -40,3 +41,11 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.27
 
 [node name="Table" parent="." unique_id=1717884425 instance=ExtResource("5_7q6ex")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.126367, 0.2917663, 1.2240875)
+
+[node name="lamp" parent="." unique_id=708966805 instance=ExtResource("7_jtd2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.622857, 0.28697515)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="lamp" unique_id=26929642]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0077379346, 0.04096794, 0.020427346)
+light_color = Color(1, 0.7372549, 0.57254905, 1)
+light_energy = 4.0
