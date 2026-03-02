@@ -28,3 +28,5 @@ while compteur < 5:
     compteur += 1
 ```
 
+## Lecture 2
+
