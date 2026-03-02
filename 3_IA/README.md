@@ -30,7 +30,7 @@ while compteur < 5:
 
 ## Lecture 2 à Chat GPT
 
-# Prompt ( fichier egalement transmis) 
+### Prompt ( fichier également transmis) 
 Peux-tu t’intéresser à ce document de la page 35 à 136 uniquement et répondre aux questions suivantes: 
 
 Citer deux personnes qui ont marqué la création de l’IA. Quelles sont leurs contributions ? 
@@ -39,7 +39,7 @@ Quels sont les développements technologiques récents qui ont permis les IA gé
 
 Réponds à ces questions uniquement à l’aide du document 
 
-# Chat GPT
+### Chat GPT
 1. Deux personnes ayant marqué la création de l’IA et leurs contributions
 
 
@@ -48,7 +48,7 @@ Réponds à ces questions uniquement à l’aide du document
 
 ⸻
 
-#2. Les développements technologiques récents ayant permis les IA génératives
+2. Les développements technologiques récents ayant permis les IA génératives
 
 Le document identifie plusieurs avancées majeures :
 	•	Les progrès du deep learning (années 2010) :
