@@ -28,5 +28,38 @@ while compteur < 5:
     compteur += 1
 ```
 
-## Lecture 2
+## Lecture 2 à Chat GPT
 
+# Prompt ( fichier egalement transmis) 
+Peux-tu t’intéresser à ce document de la page 35 à 136 uniquement et répondre aux questions suivantes: 
+
+Citer deux personnes qui ont marqué la création de l’IA. Quelles sont leurs contributions ? 
+
+Quels sont les développements technologiques récents qui ont permis les IA génératives?
+
+Réponds à ces questions uniquement à l’aide du document 
+
+# Chat GPT
+1. Deux personnes ayant marqué la création de l’IA et leurs contributions
+
+
+	•	John McCarthy : lors de l’école d’été de Dartmouth en 1956, il introduit le concept d’« intelligence artificielle » et la définit comme une science visant à simuler les fonctions cognitives humaines.
+	•	Marvin Minsky : il précise que l’intelligence artificielle consiste à construire des programmes capables d’accomplir des tâches relevant habituellement de l’intelligence humaine.
+
+⸻
+
+#2. Les développements technologiques récents ayant permis les IA génératives
+
+Le document identifie plusieurs avancées majeures :
+	•	Les progrès du deep learning (années 2010) :
+	•	utilisation de réseaux de neurones artificiels à couches multiples ;
+	•	disponibilité de corpus de données massifs grâce à Internet ;
+	•	augmentation rapide de la puissance de calcul des ordinateurs.
+	•	L’architecture Transformer (2017) :
+	•	introduction du mécanisme d’attention, permettant un meilleur traitement du contexte ;
+	•	amélioration significative des performances des modèles.
+	•	L’application de cette architecture à l’IA générative :
+	•	création de grands modèles de langage (LLM) et d’outils capables de générer du texte, des images, des sons ou des vidéos ;
+	•	exploitation de milliards de données et mobilisation de centaines de milliards, voire de milliers de milliards de paramètres.
+
+Ces avancées combinées — deep learning, données massives, puissance de calcul accrue et architecture Transformer — ont rendu possible l’essor des IA génératives depuis 2017.
