@@ -218,14 +218,14 @@ Le benchmark met en évidence :
 
 ## Lecture 3
 
-###Prompt
+### Prompt
 1. Faites une recherche pour en trouver 2 ou 3, les plus variés possibles. Vous pouvez essayer de trouver des benchmarks qui testent des sujets qui vous intéressent (science, programmation, mathématiques, écriture de fiction, etc.).
 2. Créer un petit tableau avec des informations générales sur les benchmarks.
 3. Quelles compétences des IA mesurent vos benchmarks ?
 4. Trouver quelques questions et regardez les réponses des modèles locaux, ainsi que ceux des grands modèles. Quelles sont vos impressions ?
 5. Cherchez les résultats des modèles sur vos benchmarks sur des sites de références. Comment ont évolué les scores des meilleurs modèles depuis la publication du benchmark.                                                                                             Réponds à ces questions
 
-###Copilot 
+### Copilot 
 
 1) Recherche : 3 benchmarks variés
 
