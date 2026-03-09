@@ -214,5 +214,152 @@ Le benchmark met en évidence :
 	•	des performances déséquilibrées
 	•	une forte difficulté sur les tâches procédurales et normatives
 
+	
+
+## Lecture 3
+
+###Prompt
+1. Faites une recherche pour en trouver 2 ou 3, les plus variés possibles. Vous pouvez essayer de trouver des benchmarks qui testent des sujets qui vous intéressent (science, programmation, mathématiques, écriture de fiction, etc.).
+2. Créer un petit tableau avec des informations générales sur les benchmarks.
+3. Quelles compétences des IA mesurent vos benchmarks ?
+4. Trouver quelques questions et regardez les réponses des modèles locaux, ainsi que ceux des grands modèles. Quelles sont vos impressions ?
+5. Cherchez les résultats des modèles sur vos benchmarks sur des sites de références. Comment ont évolué les scores des meilleurs modèles depuis la publication du benchmark.                                                                                             Réponds à ces questions
+
+###Copilot 
+
+1) Recherche : 3 benchmarks variés
+
+MMLU (Massive Multitask Language Understanding) : 57 matières académiques et professionnelles (maths, droit, médecine, histoire, info…), format QCM. Article fondateur (ICLR 2021) et site HELM pour des runs standardisés. [arxiv.org], [crfm.stanford.edu]
+GSM8K (Grade School Math 8K) : 8,5k problèmes de maths “niveau collège” mais exigeant un raisonnement multi‑étapes ; score sur la réponse numérique finale exacte. [arxiv.org], [huggingface.co]
+HumanEval : 164 tâches de génération de fonctions Python à partir d’un docstring + tests unitaires ; mesure de pass@1 (taux de réussite des tests sans échantillonnage multiple). Présentations et tableaux de bord récents. [ibm.com], [pricepertoken.com]
+
+
+2) Petit tableau récapitulatif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BenchmarkDomaine / tâcheFormat & métriqueTaille (ordre de grandeur)Référence / LeaderboardMMLUConnaissances académiques & pro + raisonnementQCM (A–D), Accuracy (souvent 5‑shot)~16 k questions, 57 sujetsPaper ICLR 2021 & HELM (runs standardisés) [arxiv.org], [crfm.stanford.edu]GSM8KProblèmes de maths à étapesRéponse libre numérique, Exact match; souvent CoT/self‑consistency7 473 train / 1 319 testPaper (OpenAI 2021), dataset HF, fiches techniques [arxiv.org], [huggingface.co]HumanEvalGénération de code Python à partir d’un docstringExécution de tests unitaires, pass@1 (ou pass@k)164 itemsPrésentation IBM, leaderboards agrégés 2025‑26 [ibm.com], [pricepertoken.com]
+
+3) Quelles compétences IA ces benchmarks mesurent‑ils ?
+
+MMLU :
+
+Rappel de connaissances larges (STEM, SHS, droit, médecine) + raisonnement court sous contrainte QCM.
+Sensible aux consignes/prompting ; d’où les appels à des protocoles d’évaluation standardisés (HELM) pour éviter les comparaisons “pomme‑poire”. [arxiv.org], [crfm.stanford.edu]
+
+
+GSM8K :
+
+Compréhension de problème + chaînage logique arithmétique (2–8 étapes) + rigueur de format (numérique exact).
+Met en évidence l’apport des techniques Chain‑of‑Thought et vérificateurs/reranking. [arxiv.org]
+
+
+HumanEval :
+
+Synthèse de code correct fonctionnellement, compréhension d’un docstring, maniement d’API/bibliothèques de base, et généralisation à des patterns algorithmiques simples.
+Mesure “exécutable” : passe/échoue aux tests. [ibm.com]
+
+
+
+
+4) Exemples de questions & impressions (locaux vs “frontier models”)
+a) GSM8K — exemple type
+
+« Natalia a vendu 48 pinces en avril, puis deux fois moins en mai. Combien au total ? » → 48/2=24, total = 72. Format de solution attendu : étapes + #### 72. (exemple issu de la carte du dataset) [huggingface.co]
+
+Impressions
+
+Modèles locaux 7–8B (ex. Llama 3.1 8B, Mistral 7B) : souvent corrects si on guide avec 2–3 exemples + CoT ; sensibles au format de sortie (risque d’erreur de forme). Des comparatifs publics placent Llama 3.1 8B > Mistral 7B sur MMLU/GSM8K, mais l’écart dépend du quantization/mode d’inférence. [docsbot.ai], [ionio.ai]
+Frontier (Claude, OpenAI o‑/o3‑/o4‑series, DeepSeek‑R1, Gemini 2.5/3.x) : arrivent > 95 % sur GSM8K (pass@1) dans plusieurs tableaux agrégés récents, en partie grâce à CoT + self‑consistency ou “thinking” modes. [pricepertoken.com], [codesota.com]
+
+b) MMLU — exemple type
+
+(Abstrait : “Trouver le degré de l’extension Q(2,3,18)/Q\mathbb{Q}(\sqrt{2},\sqrt{3},\sqrt{18})/\mathbb{Q}Q(2​,3​,18​)/Q”) — QCM. (extraits des sous‑sets abstract_algebra) [huggingface.co]
+
+Impressions
+
+Locaux 7–8B : scores 60–70 % typiques en 5‑shot; sensibles au protocole (génération libre vs log‑prob sur A/B/C/D). Un repo illustre les écarts selon la méthode de scoring (argmax sur lettres vs génération). [docsbot.ai], [github.com]
+Frontier (GPT‑4.x/5.x, Claude 3.5/4.x, Gemini 3.x, Llama 3.1 405B, etc.) : ~86–91 % selon agrégateurs/paramétrage, avec débats sur comparabilité ; HELM recommande des runs uniformisés pour éviter les gonflements via CoT non contrôlé. [llm-stats.com], [crfm.stanford.edu]
+
+c) HumanEval — exemple type
+
+Générer la fonction factorial(n) conforme au docstring et aux tests. (HumanEval contient 164 tâches de ce type) [ibm.com]
+
+Impressions
+
+Locaux 7–8B : souvent 70–86 % pass@1 selon famille et réglages (coder‑tuned aident beaucoup) ; la couverture des tests de HumanEval est limitée, d’où de nouveaux dérivés (mHumanEval, LiveCodeBench) pour durcir l’évaluation. [gemma-3n.net], [github.com]
+Frontier : ~90–98 % pass@1 pour les meilleurs (Claude 4.5/4.6 thinking, Grok 4, DeepSeek R1, GPT‑5.x/4o…), sur tableaux agrégés 2025‑26. [pricepertoken.com]
+
+
+Synthèse “ressenti” :
+
+Les modèles locaux (7–8B) atteignent aujourd’hui des performances “utilisables” sur GSM8K/HumanEval avec un prompting et une quantization soignés, mais restent en‑deçà des meilleurs fermés sur les cas piégeux ou la robustesse de format. [ionio.ai]
+Les frontier dominent en raisonnement cohérent (GSM8K), culture générale (MMLU) et code (HumanEval), surtout quand on active des modes “thinking”/CoT contrôlés. [pricepertoken.com], [llm-stats.com]
+
+
+
+5) Comment les scores ont évolué depuis la publication des benchmarks ?
+
+
+MMLU (2020 → 2026)
+
+À la sortie : GPT‑3 (175B) ≈ 43,9 %, proche mais au‑dessus du hasard (25 %). Les humains experts ≈ ~90 %. [arxiv.org]
+2024–2026 : montée rapide vers ~88–91 % pour les meilleurs (Claude 3.5/4.x, o‑/GPT‑4.x/5.x, Gemini 3.x, Llama 3.1 405B), avec controverses sur les protocoles (CoT, self‑consistency, “uncertainty routing”) ; HELM a lancé une évaluation standardisée pour comparaisons “propres”. [crfm.stanford.edu], [llm-stats.com]
+
+
+
+GSM8K (2021 → 2026)
+
+Départ : grands modèles < 60 % sans CoT ; verifiers + self‑consistency étaient clés pour dépasser 70–80 %. [arxiv.org]
+2025–2026 : meilleurs “frontier” (Claude‑Opus/Sonnet, DeepSeek‑R1, OpenAI o‑/o4‑mini‑high, Gemini 2.5/3) affichent ~95–97 % pass@1 sur des leaderboards agrégés. (Les chiffres varient selon les sources et la sélection exacte.) [pricepertoken.com], [codesota.com]
+
+
+
+HumanEval (2021 → 2026)
+
+Départ : Codex/GPT‑3 à ~20–30 % pass@1 (selon variantes historiques).
+2025–2026 : leaders ~95–98 % pass@1, avec de nouveaux jeux multilingues/plus denses en tests (p.ex. mHumanEval) pour éviter les plafonds artificiels. [ibm.com], [arxiv.org]
+
+
+
+
+Conclusion sur la tendance : sur ces trois benchmarks, les meilleurs scores se sont rapprochés du plafond humain (voire marginalement au‑delà en QCM), ce qui a déclenché un ré-alignement méthodologique (HELM pour MMLU, variantes plus dures comme MMLU‑Pro, LiveCodeBench/mHumanEval pour le code, etc.) afin de conserver du pouvoir discriminant. [crfm.stanford.edu], [pricepertoken.com]
+
+
+Pour aller plus loin (liens utiles)
+
+MMLU : paper + GitHub + HELM standardisé. [arxiv.org], [github.com], [crfm.stanford.edu]
+GSM8K : paper + dataset (HF) + fiches/leaderboards. [arxiv.org], [huggingface.co]
+HumanEval : explication IBM + tableaux contemporains. [ibm.com], [pricepertoken.com]
 
 
