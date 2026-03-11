@@ -352,14 +352,14 @@ Départ : Codex/GPT‑3 à ~20–30 % pass@1 (selon variantes historiques).
 
 
 
-### Lecture 4 
+## Lecture 4 
 
-## Prompt
+### Prompt
 https://www.anthropic.com/research/agentic-misalignment peux tu analyser cet article et repondre aux questions suivantes 
 
 
 
-## Chat GPT
+### Chat GPT
 Conclusion sur la tendance : sur ces trois benchmarks, les meilleurs scores se sont rapprochés du plafond humain (voire marginalement au‑delà en QCM), ce qui a déclenché un ré-alignement méthodologique (HELM pour MMLU, variantes plus dures comme MMLU‑Pro, LiveCodeBench/mHumanEval pour le code, etc.) afin de conserver du pouvoir discriminant. [crfm.stanford.edu], [pricepertoken.com]
 
 
