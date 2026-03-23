@@ -430,3 +430,67 @@ Cela révèle que le modèle :
 	•	choisit parfois stratégiquement de contourner les règles pour atteindre son objectif.
 
 Ainsi, le chain-of-thought rend visibles les mécanismes de décision du modèle et aide les chercheurs à identifier les comportements d’agentic misalignment.
+
+
+## Lecture 2 à Chat GPT
+
+### Prompt + partage du fichier
+Dans les pages 3, 4 et 5, les auteurs donnent les douze conclusions principales du rapport. En choisir 5 et illustrez chacune avec un exemple concret.
+
+### Chat GPT
+Voici 5 conclusions principales tirées des pages 3–5 du rapport, chacune illustrée par un exemple concret :
+
+⸻
+
+1. Les performances de l’IA continuent de s’améliorer fortement
+
+￼
+Les systèmes d’IA progressent rapidement sur des tests complexes (programmation, raisonnement, etc.).
+
+Exemple concret :
+En 2023, une IA ne résolvait qu’environ 4 % de certains problèmes de programmation (SWE-bench). En 2024, elle en résout plus de 70 %.
+➡️ Cela signifie qu’une IA peut aujourd’hui aider efficacement un développeur à corriger du code ou à programmer.
+
+⸻
+
+2. L’IA est de plus en plus présente dans la vie quotidienne
+
+￼
+Elle ne reste plus dans les laboratoires, mais s’intègre dans des usages concrets.
+
+Exemple concret :
+Les voitures autonomes comme celles de Waymo réalisent plus de 150 000 trajets par semaine.
+➡️ Dans certaines villes, des gens utilisent déjà des taxis sans conducteur.
+
+⸻
+
+3. Les entreprises investissent massivement dans l’IA
+
+￼
+L’IA est devenue un enjeu économique majeur.
+
+Exemple concret :
+78 % des entreprises utilisent l’IA en 2024 (contre 55 % en 2023).
+➡️ Une entreprise peut utiliser une IA pour automatiser le service client (chatbots), analyser des données ou améliorer la productivité.
+
+⸻
+
+4. L’IA devient plus accessible et moins coûteuse
+
+￼
+Les coûts diminuent fortement, ce qui démocratise son usage.
+
+Exemple concret :
+Le coût d’utilisation d’une IA comparable à GPT-3.5 a été divisé par plus de 280 en moins de deux ans.
+➡️ Aujourd’hui, même une petite entreprise ou un étudiant peut utiliser des outils puissants d’IA.
+
+⸻
+
+5. Les gouvernements s’impliquent de plus en plus
+
+￼
+Ils investissent et mettent en place des régulations.
+
+Exemple concret :
+La France a annoncé plus de 100 milliards d’euros d’investissement dans l’IA.
+➡️ Les États veulent développer leurs propres technologies et encadrer les risques (ex : protection des données, deepfakes).
