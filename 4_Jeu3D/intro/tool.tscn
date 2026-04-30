@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddlybwa2i4i06"]
+
+[ext_resource type="Script" uid="uid://cra2hq3viisbn" path="res://intro.gd" id="1_f6vxs"]
+[ext_resource type="Script" uid="uid://cuwg2fwktab4e" path="res://move.gd" id="2_3gk12"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7cqlo"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_f6vxs"]
+sky_material = SubResource("ProceduralSkyMaterial_7cqlo")
+
+[sub_resource type="Environment" id="Environment_3gk12"]
+background_mode = 2
+sky = SubResource("Sky_f6vxs")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="tool" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3gk12")
+
+[node name="Rotate" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.510655, 0.859786, 0, -0.859786, -0.510655, 0, 0, 0)
+script = ExtResource("1_f6vxs")
+
+[node name="Move" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.784612, -0.619988, 0, 0.619988, 0.784612, 0, -0.824615, 0)
+script = ExtResource("2_3gk12")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -2.87276)

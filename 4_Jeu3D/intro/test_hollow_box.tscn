@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm0y81gx8sv5q"]
+
+[sub_resource type="GDScript" id="GDScript_opbra"]
+script/source = "@tool
+
+extends CSGBox3D
+class_name HollowBox1
+## Creates a hollow box.
+
+@export var thickness := 0.1:
+	set(value):
+		thickness = value
+		create()
+
+## Button action to rebuild the hollow tube.
+@export_tool_button(\"Rebuild\") var action := create
+
+func _ready():
+	create()
+	
+func create():
+	var inner = null
+	# find a procedurally created node
+	for child in get_children():
+		if child.owner == null:
+			inner = child
+			break
+		if inner == null:
+			inner = CSGBox3D.new()
+			add_child(inner)
+			inner.operation = CSGShape3D.OPERATION_SUBTRACTION
+		if material:
+			inner.material = material
+			inner.size = size
+			inner.size.x -= thickness * 2
+			inner.size.y -= thickness * 2
+			inner.size.z += 0.01 # Slightly taller to avoid \"Z-fighting\" or thin faces
+"
+
+[node name="TestHollowBox" type="Node3D"]
+
+[node name="HollowBox2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000227094, -0.00792742, 0)
+size = Vector3(5, 5, 1)
+script = SubResource("GDScript_opbra")
+metadata/_custom_type_script = "uid://dldgsnseknj8i"

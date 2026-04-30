@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmvxqvggom3l1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gv5m4"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_f3sb7"]
+sky_material = SubResource("ProceduralSkyMaterial_gv5m4")
+
+[sub_resource type="Environment" id="Environment_fj7yv"]
+background_mode = 2
+sky = SubResource("Sky_f3sb7")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fj7yv")
+
+[node name="ffloor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00245547, -0.00223255, 0.00422764)
+size = Vector3(9, 1, 9)
+
+[node name="arch" type="Node3D" parent="ffloor"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="ffloor/arch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+size = Vector3(1, 3, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="ffloor/arch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.17059, 2, 0)
+size = Vector3(1, 3, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="ffloor/arch"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.58665, 3.97927, 0.000625849)
+size = Vector3(1, 4.16818, 1)
+
+[node name="arch2" type="Node3D" parent="ffloor"]
+transform = Transform3D(0.0174001, 0, 0.999849, 0, 1, 0, -0.999849, 0, 0.0174001, -2.70343, 0, -0.130065)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="ffloor/arch2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+size = Vector3(1, 3, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="ffloor/arch2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.17059, 2, 0)
+size = Vector3(1, 3, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="ffloor/arch2"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.58665, 3.97927, 0.000625849)
+size = Vector3(1, 4.16818, 1)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 7.94345)
+fov = 70.0

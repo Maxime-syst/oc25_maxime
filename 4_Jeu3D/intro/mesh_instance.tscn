@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://bbi4sfj4jwm6r"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_cgcvp"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_cuixc"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0oxux"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5bpbn"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_u7mv8"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_1m4wr"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_cyw87"]
+
+[sub_resource type="TextMesh" id="TextMesh_5pcjf"]
+text = "Love"
+font_size = 55
+
+[sub_resource type="TorusMesh" id="TorusMesh_ry3fd"]
+
+[node name="MeshInstance" type="Node3D" unique_id=1958689978]
+
+[node name="Box_Mesh" type="MeshInstance3D" parent="." unique_id=793594528]
+mesh = SubResource("BoxMesh_cgcvp")
+
+[node name="Label3D" type="Label3D" parent="Box_Mesh" unique_id=615571160]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1208708, 0)
+text = "Box"
+font_size = 100
+
+[node name="Capsule_Mesh" type="MeshInstance3D" parent="." unique_id=1076317810]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9559503, 0, 0)
+mesh = SubResource("CapsuleMesh_cuixc")
+
+[node name="Label3D" type="Label3D" parent="Capsule_Mesh" unique_id=1561770977]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5161405, 0)
+text = "Capsule
+"
+font_size = 90
+
+[node name="Cylinder_Mesch" type="MeshInstance3D" parent="." unique_id=427657525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.659078, 0, 0)
+mesh = SubResource("CylinderMesh_0oxux")
+
+[node name="Label3D" type="Label3D" parent="Cylinder_Mesch" unique_id=528555064]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9766135, 0)
+text = "Cylinder"
+font_size = 90
+
+[node name="Plane_Mesh" type="MeshInstance3D" parent="." unique_id=140411365]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.7196336)
+mesh = SubResource("PlaneMesh_5bpbn")
+
+[node name="Label3D" type="Label3D" parent="Plane_Mesh" unique_id=796290930]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31877244, 0)
+text = "Plane"
+font_size = 90
+
+[node name="Quad_Mesh" type="MeshInstance3D" parent="." unique_id=2143838936]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9559503, 0, 2.6538916)
+mesh = SubResource("QuadMesh_u7mv8")
+
+[node name="Label3D" type="Label3D" parent="Quad_Mesh" unique_id=2146618964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7808958, 0)
+text = "Quad"
+font_size = 90
+
+[node name="Prisme_Mesh" type="MeshInstance3D" parent="." unique_id=807537475]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.659078, 0, 2.5729978)
+mesh = SubResource("PrismMesh_1m4wr")
+
+[node name="Label3D" type="Label3D" parent="Prisme_Mesh" unique_id=1443532981]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5191615, 0)
+text = "Prisme
+"
+font_size = 90
+
+[node name="Sphere_Mesh" type="MeshInstance3D" parent="." unique_id=1776763068]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.010105)
+mesh = SubResource("SphereMesh_cyw87")
+
+[node name="Label3D" type="Label3D" parent="Sphere_Mesh" unique_id=863536707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9029999, 0)
+text = "Sphere"
+font_size = 90
+
+[node name="Text_Mesh" type="MeshInstance3D" parent="." unique_id=101318103]
+transform = Transform3D(1, 0, 0, 0, 0.9994438, -0.03334706, 0, 0.03334706, 0.9994438, 1.6345029, 0, 6.004249)
+mesh = SubResource("TextMesh_5pcjf")
+
+[node name="Label3D" type="Label3D" parent="Text_Mesh" unique_id=219983257]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52275604, -0.017442226)
+text = "Text"
+font_size = 90
+
+[node name="Torus_Mesh" type="MeshInstance3D" parent="." unique_id=1560849632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.659078, 0, 6.0008717)
+mesh = SubResource("TorusMesh_ry3fd")
+
+[node name="Label3D" type="Label3D" parent="Torus_Mesh" unique_id=876664849]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64594936, 0)
+text = "Torus"
+font_size = 90

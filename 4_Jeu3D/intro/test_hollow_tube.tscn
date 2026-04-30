@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcjvlt0vfriy3"]
+
+[ext_resource type="Script" uid="uid://bmoddum6sxnwp" path="res://addons/hollowtube.gd" id="1_7ayxr"]
+
+[node name="test hollowtube" type="Node3D"]
+
+[node name="HollowTube" type="CSGCylinder3D" parent="."]
+sides = 35
+script = ExtResource("1_7ayxr")
+metadata/_custom_type_script = "uid://bmoddum6sxnwp"
+
+[node name="HollowTube2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.677646, 0.735388, 0, -0.735388, 0.677646, 0, 0, 0, 1, 1.13291, 0, 0)
+sides = 35
+script = ExtResource("1_7ayxr")
+metadata/_custom_type_script = "uid://bmoddum6sxnwp"
