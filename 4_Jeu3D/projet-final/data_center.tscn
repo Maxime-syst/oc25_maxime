@@ -1,0 +1,365 @@
+[gd_scene format=3 uid="uid://b7m8yuv0ypftk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xkuxl"]
+albedo_color = Color(0.41674656, 0.4167466, 0.41674656, 1)
+metallic = 0.2
+
+[sub_resource type="ImageTexture" id="ImageTexture_xkuxl"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_cj5kg"]
+diffuse_texture = SubResource("ImageTexture_xkuxl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5d6jn"]
+albedo_color = Color(0.26438904, 0.264389, 0.264389, 1)
+albedo_texture = SubResource("CanvasTexture_cj5kg")
+metallic = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0g4tx"]
+albedo_color = Color(0.12298488, 0.12298488, 0.12298488, 1)
+emission = Color(0, 0, 0.5568628, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lap4s"]
+size = Vector3(1, 2.5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fr782"]
+albedo_color = Color(0, 0, 1, 1)
+emission_enabled = true
+emission = Color(0, 0, 1, 1)
+emission_energy_multiplier = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fk43w"]
+albedo_color = Color(0, 1, 0, 1)
+emission_enabled = true
+emission = Color(0, 0, 1, 1)
+emission_energy_multiplier = 2.31
+
+[sub_resource type="BoxMesh" id="BoxMesh_wetdp"]
+material = SubResource("StandardMaterial3D_fk43w")
+size = Vector3(1.05, 0.05, 0.02)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ax30f"]
+albedo_color = Color(0, 0, 1, 1)
+emission_enabled = true
+emission = Color(0, 0, 1, 1)
+
+[sub_resource type="Animation" id="Animation_l6opu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Environment/Racks/leds blue:material_override:emission_energy_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Environment/Racks/leds blue/leds2:material_override:emission_energy_multiplier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Environment/Racks/leds blue/leds3:material_override:emission_energy_multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Environment/Racks/leds blue/leds4:material_override:emission_energy_multiplier")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Environment/Racks/leds blue/leds5:material_override:emission_energy_multiplier")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Environment/Racks/leds blue/leds6:material_override:emission_energy_multiplier")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_2g1jv"]
+resource_name = "blink_green"
+
+[sub_resource type="Animation" id="Animation_lh778"]
+resource_name = "light_animation"
+length = 3.0
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_xoowu"]
+resource_name = "light_animation_2"
+length = 3.0
+
+[sub_resource type="Animation" id="Animation_tarqq"]
+resource_name = "new_animation"
+length = 1.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Environment/Racks/leds blue:material_override:emission_energy_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.9, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.3, 1.8, 0.6, 2.1, 0.3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Environment/Racks/leds blue/leds2:material_override:emission_energy_multiplier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.9, 1.2666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.3, 1.8, 0.6, 2.1, 0.3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Environment/Racks/leds blue/leds3:material_override:emission_energy_multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.5, 0.93333334, 1.1666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.3, 1.8, 0.6, 2.1, 0.3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Environment/Racks/leds blue/leds4:material_override:emission_energy_multiplier")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.8333333, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.3, 1.8, 0.6, 2.1, 0.3]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Environment/Racks/leds blue/leds5:material_override:emission_energy_multiplier")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.93333334, 1.2333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.3, 1.8, 0.6, 2.1, 0.3]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Environment/Racks/leds blue/leds6:material_override:emission_energy_multiplier")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.96666664, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.3, 1.8, 0.6, 2.1, 0.3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f365v"]
+_data = {
+&"RESET": SubResource("Animation_l6opu"),
+&"blink_green": SubResource("Animation_2g1jv"),
+&"light_animation": SubResource("Animation_lh778"),
+&"light_animation_2": SubResource("Animation_xoowu"),
+&"new_animation": SubResource("Animation_tarqq")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_thwj7"]
+albedo_color = Color(0, 0, 1, 1)
+emission_enabled = true
+emission = Color(0, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wkg11"]
+albedo_color = Color(0, 0, 1, 1)
+emission_enabled = true
+emission = Color(0, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_av147"]
+albedo_color = Color(0, 0, 1, 1)
+emission_enabled = true
+emission = Color(0, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iveb2"]
+albedo_color = Color(0, 0, 1, 1)
+emission_enabled = true
+emission = Color(0, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s1gqr"]
+albedo_color = Color(0, 1, 0.29411766, 1)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n6bwr"]
+size = Vector3(1.05, 0.05, 0.02)
+
+[sub_resource type="Animation" id="Animation_qfrnv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:emission_energy_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_3msh6"]
+resource_name = "blink_green"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:emission_energy_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 5.0, 0.0, 5.0, 0.0, 2.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c8rh8"]
+_data = {
+&"RESET": SubResource("Animation_qfrnv"),
+&"blink_green": SubResource("Animation_3msh6")
+}
+
+[node name="DataCenter" type="Node3D" unique_id=1212264640]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=632625370]
+
+[node name="Environment" type="Node3D" parent="." unique_id=1598166015]
+
+[node name="floor" type="CSGBox3D" parent="Environment" unique_id=1512695331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+size = Vector3(20, 0.5, 20)
+material = SubResource("StandardMaterial3D_xkuxl")
+
+[node name="wall" type="CSGBox3D" parent="Environment" unique_id=1024156582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01594925, 2.9659436, -9.761556)
+size = Vector3(20, 5, 0.5)
+
+[node name="wall2" type="CSGBox3D" parent="Environment/wall" unique_id=2146983383]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.747454, 0, 9.746535)
+size = Vector3(20, 5, 0.5)
+
+[node name="wall3" type="CSGBox3D" parent="Environment/wall" unique_id=1938293542]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 9.758135, 0, 9.778238)
+size = Vector3(20, 5, 0.5)
+
+[node name="wall4" type="CSGBox3D" parent="Environment/wall" unique_id=839492206]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 19.52533)
+size = Vector3(20, 5, 0.5)
+
+[node name="Racks" type="CSGBox3D" parent="Environment" unique_id=118746167]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0206094, 1.75, -7.362834)
+size = Vector3(1, 2.5, 1)
+material = SubResource("StandardMaterial3D_5d6jn")
+
+[node name="racks" type="MeshInstance3D" parent="Environment/Racks" unique_id=1637201390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.035997868, 0.021088123)
+material_override = SubResource("StandardMaterial3D_0g4tx")
+custom_aabb = AABB(1, 2.5, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_lap4s")
+
+[node name="leds blue" type="MeshInstance3D" parent="Environment/Racks" unique_id=191401790]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0015230179, 0.8023839, -0.35922194)
+material_override = SubResource("StandardMaterial3D_fr782")
+mesh = SubResource("BoxMesh_wetdp")
+
+[node name="leds2" type="MeshInstance3D" parent="Environment/Racks/leds blue" unique_id=1294489177]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.081095695)
+material_override = SubResource("StandardMaterial3D_ax30f")
+mesh = SubResource("BoxMesh_wetdp")
+
+[node name="light_blue2" type="AnimationPlayer" parent="Environment/Racks/leds blue/leds2" unique_id=1891835745]
+root_node = NodePath("../../../../..")
+libraries/ = SubResource("AnimationLibrary_f365v")
+
+[node name="leds3" type="MeshInstance3D" parent="Environment/Racks/leds blue" unique_id=1636096368]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.16287947)
+material_override = SubResource("StandardMaterial3D_thwj7")
+mesh = SubResource("BoxMesh_wetdp")
+
+[node name="leds4" type="MeshInstance3D" parent="Environment/Racks/leds blue" unique_id=1341977087]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6432469, 0.517993)
+material_override = SubResource("StandardMaterial3D_wkg11")
+mesh = SubResource("BoxMesh_wetdp")
+
+[node name="leds5" type="MeshInstance3D" parent="Environment/Racks/leds blue" unique_id=1150107575]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6432469, 0.59908867)
+material_override = SubResource("StandardMaterial3D_av147")
+mesh = SubResource("BoxMesh_wetdp")
+
+[node name="leds6" type="MeshInstance3D" parent="Environment/Racks/leds blue" unique_id=795943787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6432469, 0.68087244)
+material_override = SubResource("StandardMaterial3D_iveb2")
+mesh = SubResource("BoxMesh_wetdp")
+
+[node name="light_blue" type="AnimationPlayer" parent="Environment/Racks/leds blue" unique_id=818820758]
+root_node = NodePath("../../../..")
+libraries/ = SubResource("AnimationLibrary_f365v")
+
+[node name="leds green" type="MeshInstance3D" parent="Environment/Racks" unique_id=1174841233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3155129, -0.35150433)
+material_override = SubResource("StandardMaterial3D_s1gqr")
+mesh = SubResource("BoxMesh_n6bwr")
+
+[node name="blink green" type="AnimationPlayer" parent="Environment/Racks/leds green" unique_id=2146017503]
+libraries/ = SubResource("AnimationLibrary_c8rh8")
