@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://blai7ha80tvqs"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n7eap"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_aohfb"]
+sky_material = SubResource("ProceduralSkyMaterial_n7eap")
+
+[sub_resource type="Environment" id="Environment_g853r"]
+background_mode = 2
+sky = SubResource("Sky_aohfb")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="text" type="Node3D" unique_id=1056109593]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1247269587]
+environment = SubResource("Environment_g853r")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=140957076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014616728, 0, -0.03367138)
+text = "Label3D"
+font_size = 82
+
+[node name="Label" type="Label" parent="." unique_id=1479185936]
+offset_left = -38.0
+offset_top = -10.0
+offset_right = 90.0
+offset_bottom = 13.0
+text = "rfrfef4rrffdwhffr"
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=214305548]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.8607194)
