@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7xrccybwsch0"]
+
+[ext_resource type="PackedScene" uid="uid://cmddnyeu3awyx" path="res://robot-playground/source/Robot_Holo_5.fbx" id="1_xygn6"]
+
+[node name="Robot_Holo_5" instance=ExtResource("1_xygn6")]
+
+[node name="holo" parent="." index="0"]
+visible = false
+
+[node name="group35" parent="holo/group36/group39/group37/group31" index="0"]
+visible = false
+
+[node name="group38" parent="holo/group36/group39/group37/group31/group35" index="0"]
+visible = false
+
+[node name="group14" parent="holo/group36/group39/group37/group31/group35/group38/group29/group21" index="1"]
+visible = false
+
+[node name="group28" parent="holo/group36/group39/group37/group31/group35/group38" index="1"]
+visible = false
+
+[node name="pGear1" parent="holo/group36/group39/group37/group31/group35/group38/group28/group212/group142/group7" index="0"]
+visible = false
+
+[node name="pGear2" parent="holo/group36/group39/group37/group31/group35/group38/group28/group212/group142/group7" index="1"]
+visible = false
+
+[node name="group27" parent="holo/group36/group39/group37/group31/group35/group38" index="2"]
+visible = false
+
+[node name="group26" parent="holo/group36/group39/group37/group31/group35/group38" index="3"]
+visible = false
+
+[node name="group25" parent="holo/group36/group39/group37/group31/group35/group38" index="4"]
+visible = false
+
+[node name="group23" parent="holo/group36/group39/group37/group31/group35/group38" index="5"]
+visible = false
+
+[node name="group22" parent="holo/group36/group39/group37/group31/group35/group38" index="6"]
+visible = false
