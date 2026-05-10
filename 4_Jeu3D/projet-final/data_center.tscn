@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://b7m8yuv0ypftk"]
 
+[ext_resource type="Script" uid="uid://c1by2mcuwuvle" path="res://hollowbox.gd" id="1_cj5kg"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xkuxl"]
 albedo_color = Color(0.41674656, 0.4167466, 0.41674656, 1)
 metallic = 0.2
@@ -283,9 +285,6 @@ _data = {
 &"blink_green": SubResource("Animation_3msh6")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cj5kg"]
-albedo_color = Color(0, 0, 0.2901961, 1)
-
 [node name="DataCenter" type="Node3D" unique_id=1212264640]
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=632625370]
@@ -314,7 +313,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 size = Vector3(20, 5, 0.5)
 
 [node name="Racks" type="CSGBox3D" parent="Environment" unique_id=118746167]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0206094, 1.75, -7.362834)
+transform = Transform3D(0.9999986, 0, -0.001658062, 0, 1, 0, 0.001658062, 0, 0.9999986, 7.016344, 1.75, -7.3637295)
 size = Vector3(1, 2.5, 1)
 material = SubResource("StandardMaterial3D_5d6jn")
 
@@ -370,8 +369,11 @@ mesh = SubResource("BoxMesh_n6bwr")
 [node name="blink green" type="AnimationPlayer" parent="Environment/Racks/leds green" unique_id=2146017503]
 libraries/ = SubResource("AnimationLibrary_c8rh8")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Environment/Racks" unique_id=1122614552]
-transform = Transform3D(0.9998956, 0.014450823, 0, -0.014444067, 0.99942815, 0.030573403, 0.00044181084, -0.03057021, 0.9995325, -0.07653999, -0.4186194, 0.6075921)
-radius = 0.02
-height = 0.17572021
-material = SubResource("StandardMaterial3D_cj5kg")
+[node name="HollowTube" type="CSGCylinder3D" parent="." unique_id=683393414]
+transform = Transform3D(-0.042685572, 0.0037515478, 0.99908155, -0.99779975, -0.05093813, -0.04243954, 0.050732106, -0.9986949, 0.005917616, 7.3950615, 2.6837883, -6.665422)
+radius = 0.107
+height = 0.046
+sides = 16
+script = ExtResource("1_cj5kg")
+thickness = 0.002
+metadata/_custom_type_script = "uid://c1by2mcuwuvle"
