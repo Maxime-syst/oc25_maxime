@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dnr64ii0xffwy"]
+
+[ext_resource type="PackedScene" uid="uid://c7xrccybwsch0" path="res://robot_player.tscn" id="1_3cn6f"]
+
+[node name="Node3D" type="Node3D" unique_id=697477365]
+
+[node name="Robot_Holo_5" parent="." unique_id=1529190048 instance=ExtResource("1_3cn6f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011340618, -1.1920929e-07, -0.18721056)

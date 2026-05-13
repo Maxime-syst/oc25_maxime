@@ -31,7 +31,7 @@ func create():
 # update it
 	if material:
 		inner.material = material
-	inner.radius = max(0.02, radius - thickness)
-	inner.height = height + 0.05 # Slightly taller to avoid "Z-fighting" or thin faces
-	inner.sides = sides
-	inner.cone = cone
+		inner.radius = max(0.001, radius - thickness)
+		inner.height = height + 0.05
+		inner.sides = sides
+		inner.cone = cone
