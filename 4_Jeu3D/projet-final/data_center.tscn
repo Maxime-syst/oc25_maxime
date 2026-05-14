@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://b7m8yuv0ypftk"]
 
-[ext_resource type="PackedScene" uid="uid://c7xrccybwsch0" path="res://robot_player.tscn" id="1_0g4tx"]
 [ext_resource type="PackedScene" uid="uid://cx1uu25t3foae" path="res://server-racking-system.fbx" id="1_5d6jn"]
+[ext_resource type="PackedScene" uid="uid://dse8g3dayqip4" path="res://player.tscn" id="3_0g4tx"]
+[ext_resource type="Script" uid="uid://caadoji1twbgk" path="res://interaction_server.gd" id="3_lap4s"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cj5kg"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_fr782"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cj5kg"]
 emission_enabled = true
@@ -21,6 +24,12 @@ metallic = 0.2
 [sub_resource type="BoxMesh" id="BoxMesh_cj5kg"]
 size = Vector3(20, 0.2, 20)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5d6jn"]
+albedo_color = Color(0.43137255, 0.89411765, 1, 1)
+emission_enabled = true
+emission = Color(0, 0.59607846, 0.9254902, 1)
+emission_energy_multiplier = 0.9
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_5d6jn"]
 size = Vector3(20.014956, 0.5342102, 20.038116)
 
@@ -29,11 +38,8 @@ size = Vector3(0.52978516, 5.3348236, 20.052277)
 
 [node name="DataCenter" type="Node3D" unique_id=1212264640]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=632625370]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.968189, 0)
-
-[node name="Robot_Holo_5" parent="CharacterBody3D" unique_id=1529190048 instance=ExtResource("1_0g4tx")]
-transform = Transform3D(-3.9509933, 0, -0.6242212, 0, 4, 0, 0.6242212, 0, -3.9509933, 0.14868188, -0.4588858, 4)
+[node name="player" parent="." unique_id=968252096 instance=ExtResource("3_0g4tx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015690923, 0.41443175, 4.336957)
 
 [node name="racks_line" type="StaticBody3D" parent="." unique_id=356914704]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43725777, 0.25, -0.08165312)
@@ -44,6 +50,16 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6.8,
 
 [node name="server-racking-system2" parent="racks_line/racks" unique_id=1577920567 instance=ExtResource("1_5d6jn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.006, 0, -0.1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="racks_line/racks" unique_id=45275126]
+transform = Transform3D(4.37114e-10, 1.442476e-07, 0.080000006, -0.010000001, 8.407024e-15, 3.496912e-09, -3.8213743e-17, -0.55, -6.556709e-09, -0.25512552, 1.0308186, -0.04945898)
+mesh = SubResource("CylinderMesh_fr782")
+skeleton = NodePath("../cable")
+
+[node name="InteractionArea" type="Area3D" parent="racks_line/racks" unique_id=2026839733]
+transform = Transform3D(12, 0, 0, 0, 3, 0, 0, 0, 120, -0.2564559, 1.0280942, -0.039457798)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="racks_line/racks/InteractionArea" unique_id=1322117862]
 
 [node name="cable" type="CSGMesh3D" parent="racks_line/racks" unique_id=1016236310]
 transform = Transform3D(2.1855695e-09, -0.4, -4.371139e-09, -0.05, -1.7484556e-08, -1.323489e-23, -1.9106854e-16, 3.4969112e-08, -0.05, 0.02352953, 0.15761423, -0.6138091)
@@ -299,252 +315,253 @@ transform = Transform3D(2, 1.4210855e-14, -2.9646153e-21, 0, 0.20000002, 0, 7.62
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="racks2" parent="racks_line" unique_id=302089819 instance=ExtResource("1_5d6jn")]
+[node name="GameManager" parent="racks_line" unique_id=302089819 instance=ExtResource("1_5d6jn")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6.8, 0.120000005, 0.6128895)
+script = ExtResource("3_lap4s")
 
-[node name="server-racking-system2" parent="racks_line/racks2" unique_id=1726256760 instance=ExtResource("1_5d6jn")]
+[node name="server-racking-system2" parent="racks_line/GameManager" unique_id=1726256760 instance=ExtResource("1_5d6jn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.006, 0, -0.1)
 
-[node name="cable" type="CSGMesh3D" parent="racks_line/racks2" unique_id=1465091752]
+[node name="cable" type="CSGMesh3D" parent="racks_line/GameManager" unique_id=1465091752]
 transform = Transform3D(2.1855695e-09, -0.4, -4.371139e-09, -0.05, -1.7484556e-08, -1.323489e-23, -1.9106854e-16, 3.4969112e-08, -0.05, 0.02352953, 0.15761423, -0.6138091)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_floor" type="CSGMesh3D" parent="racks_line/racks2/cable" unique_id=822976212]
+[node name="cable_floor" type="CSGMesh3D" parent="racks_line/GameManager/cable" unique_id=822976212]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 2.1175824e-22, 0, 1, 0, 0, -22.48497)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_up" type="CSGMesh3D" parent="racks_line/racks2/cable" unique_id=1025528941]
+[node name="cable_up" type="CSGMesh3D" parent="racks_line/GameManager/cable" unique_id=1025528941]
 transform = Transform3D(2, 1.4210855e-14, -2.9646153e-21, 0, 0.20000002, 0, 7.19978e-21, -1.4210855e-14, 2, -34.781597, -0.80091095, -19.557709)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_up2" type="CSGMesh3D" parent="racks_line/racks2/cable" unique_id=1860362905]
+[node name="cable_up2" type="CSGMesh3D" parent="racks_line/GameManager/cable" unique_id=1860362905]
 transform = Transform3D(2, 1.4210855e-14, -2.9646153e-21, 0, 0.20000002, 0, 7.6232965e-21, -1.4210855e-14, 2, -34.781597, -0.80091286, -3.8442383)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="racks2" parent="racks_line/racks2" unique_id=1543869355 instance=ExtResource("1_5d6jn")]
+[node name="racks2" parent="racks_line/GameManager" unique_id=1543869355 instance=ExtResource("1_5d6jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8026881, 0, 0)
 
-[node name="server-racking-system2" parent="racks_line/racks2/racks2" unique_id=1019630836 instance=ExtResource("1_5d6jn")]
+[node name="server-racking-system2" parent="racks_line/GameManager/racks2" unique_id=1019630836 instance=ExtResource("1_5d6jn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.006, 0, -0.1)
 
-[node name="cable" type="CSGMesh3D" parent="racks_line/racks2/racks2" unique_id=450686049]
+[node name="cable" type="CSGMesh3D" parent="racks_line/GameManager/racks2" unique_id=450686049]
 transform = Transform3D(2.1855695e-09, -0.4, -4.371139e-09, -0.05, -1.7484556e-08, -1.323489e-23, -1.9106854e-16, 3.4969112e-08, -0.05, 0.02352953, 0.15761423, -0.6138091)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_floor" type="CSGMesh3D" parent="racks_line/racks2/racks2/cable" unique_id=546547425]
+[node name="cable_floor" type="CSGMesh3D" parent="racks_line/GameManager/racks2/cable" unique_id=546547425]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 2.1175824e-22, 0, 1, 0, 0, -22.48497)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_up" type="CSGMesh3D" parent="racks_line/racks2/racks2/cable" unique_id=595282668]
+[node name="cable_up" type="CSGMesh3D" parent="racks_line/GameManager/racks2/cable" unique_id=595282668]
 transform = Transform3D(2, 1.4210855e-14, -2.9646153e-21, 0, 0.20000002, 0, 7.19978e-21, -1.4210855e-14, 2, -34.781597, -0.80091095, -19.557709)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_up2" type="CSGMesh3D" parent="racks_line/racks2/racks2/cable" unique_id=521024836]
+[node name="cable_up2" type="CSGMesh3D" parent="racks_line/GameManager/racks2/cable" unique_id=521024836]
 transform = Transform3D(2, 1.4210855e-14, -2.9646153e-21, 0, 0.20000002, 0, 7.6232965e-21, -1.4210855e-14, 2, -34.781597, -0.80091286, -3.8442383)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="racks3" parent="racks_line/racks2" unique_id=844564587 instance=ExtResource("1_5d6jn")]
+[node name="racks3" parent="racks_line/GameManager" unique_id=844564587 instance=ExtResource("1_5d6jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6008992, 0, 0)
 
-[node name="server-racking-system2" parent="racks_line/racks2/racks3" unique_id=933388072 instance=ExtResource("1_5d6jn")]
+[node name="server-racking-system2" parent="racks_line/GameManager/racks3" unique_id=933388072 instance=ExtResource("1_5d6jn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.006, 0, -0.1)
 
-[node name="cable" type="CSGMesh3D" parent="racks_line/racks2/racks3" unique_id=567955328]
+[node name="cable" type="CSGMesh3D" parent="racks_line/GameManager/racks3" unique_id=567955328]
 transform = Transform3D(2.1855695e-09, -0.4, -4.371139e-09, -0.05, -1.7484556e-08, -1.323489e-23, -1.9106854e-16, 3.4969112e-08, -0.05, 0.02352953, 0.15761423, -0.6138091)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_floor" type="CSGMesh3D" parent="racks_line/racks2/racks3/cable" unique_id=320916448]
+[node name="cable_floor" type="CSGMesh3D" parent="racks_line/GameManager/racks3/cable" unique_id=320916448]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 2.1175824e-22, 0, 1, 0, 0, -22.48497)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_up" type="CSGMesh3D" parent="racks_line/racks2/racks3/cable" unique_id=1499942562]
+[node name="cable_up" type="CSGMesh3D" parent="racks_line/GameManager/racks3/cable" unique_id=1499942562]
 transform = Transform3D(2, 1.4210855e-14, -2.9646153e-21, 0, 0.20000002, 0, 7.19978e-21, -1.4210855e-14, 2, -34.781597, -0.80091095, -19.557709)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_up2" type="CSGMesh3D" parent="racks_line/racks2/racks3/cable" unique_id=618314149]
+[node name="cable_up2" type="CSGMesh3D" parent="racks_line/GameManager/racks3/cable" unique_id=618314149]
 transform = Transform3D(2, 1.4210855e-14, -2.9646153e-21, 0, 0.20000002, 0, 7.6232965e-21, -1.4210855e-14, 2, -34.781597, -0.80091286, -3.8442383)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="racks4" parent="racks_line/racks2" unique_id=1944429690 instance=ExtResource("1_5d6jn")]
+[node name="racks4" parent="racks_line/GameManager" unique_id=1944429690 instance=ExtResource("1_5d6jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3829198, 0, -4.7683716e-07)
 
-[node name="server-racking-system2" parent="racks_line/racks2/racks4" unique_id=1925384685 instance=ExtResource("1_5d6jn")]
+[node name="server-racking-system2" parent="racks_line/GameManager/racks4" unique_id=1925384685 instance=ExtResource("1_5d6jn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.006, 0, -0.1)
 
-[node name="cable" type="CSGMesh3D" parent="racks_line/racks2/racks4" unique_id=611724486]
+[node name="cable" type="CSGMesh3D" parent="racks_line/GameManager/racks4" unique_id=611724486]
 transform = Transform3D(2.1855695e-09, -0.4, -4.371139e-09, -0.05, -1.7484556e-08, -1.323489e-23, -1.9106854e-16, 3.4969112e-08, -0.05, 0.02352953, 0.15761423, -0.6138091)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_floor" type="CSGMesh3D" parent="racks_line/racks2/racks4/cable" unique_id=1180233524]
+[node name="cable_floor" type="CSGMesh3D" parent="racks_line/GameManager/racks4/cable" unique_id=1180233524]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 2.1175824e-22, 0, 1, 0, 0, -22.48497)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_up" type="CSGMesh3D" parent="racks_line/racks2/racks4/cable" unique_id=1297230799]
+[node name="cable_up" type="CSGMesh3D" parent="racks_line/GameManager/racks4/cable" unique_id=1297230799]
 transform = Transform3D(2, 1.4210855e-14, -2.9646153e-21, 0, 0.20000002, 0, 7.19978e-21, -1.4210855e-14, 2, -34.781597, -0.80091095, -19.557709)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_up2" type="CSGMesh3D" parent="racks_line/racks2/racks4/cable" unique_id=330097621]
+[node name="cable_up2" type="CSGMesh3D" parent="racks_line/GameManager/racks4/cable" unique_id=330097621]
 transform = Transform3D(2, 1.4210855e-14, -2.9646153e-21, 0, 0.20000002, 0, 7.6232965e-21, -1.4210855e-14, 2, -34.781597, -0.80091286, -3.8442383)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="racks5" parent="racks_line/racks2" unique_id=1085322083 instance=ExtResource("1_5d6jn")]
+[node name="racks5" parent="racks_line/GameManager" unique_id=1085322083 instance=ExtResource("1_5d6jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1601634, 0, -4.7683716e-07)
 
-[node name="server-racking-system2" parent="racks_line/racks2/racks5" unique_id=521576455 instance=ExtResource("1_5d6jn")]
+[node name="server-racking-system2" parent="racks_line/GameManager/racks5" unique_id=521576455 instance=ExtResource("1_5d6jn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.006, 0, -0.1)
 
-[node name="cable" type="CSGMesh3D" parent="racks_line/racks2/racks5" unique_id=1444439118]
+[node name="cable" type="CSGMesh3D" parent="racks_line/GameManager/racks5" unique_id=1444439118]
 transform = Transform3D(2.1855695e-09, -0.4, -4.371139e-09, -0.05, -1.7484556e-08, -1.323489e-23, -1.9106854e-16, 3.4969112e-08, -0.05, 0.02352953, 0.15761423, -0.6138091)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_floor" type="CSGMesh3D" parent="racks_line/racks2/racks5/cable" unique_id=1206259444]
+[node name="cable_floor" type="CSGMesh3D" parent="racks_line/GameManager/racks5/cable" unique_id=1206259444]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 2.1175824e-22, 0, 1, 0, 0, -22.48497)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_up" type="CSGMesh3D" parent="racks_line/racks2/racks5/cable" unique_id=1033518868]
+[node name="cable_up" type="CSGMesh3D" parent="racks_line/GameManager/racks5/cable" unique_id=1033518868]
 transform = Transform3D(2, 1.4210855e-14, -2.9646153e-21, 0, 0.20000002, 0, 7.19978e-21, -1.4210855e-14, 2, -34.781597, -0.80091095, -19.557709)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_up2" type="CSGMesh3D" parent="racks_line/racks2/racks5/cable" unique_id=355474263]
+[node name="cable_up2" type="CSGMesh3D" parent="racks_line/GameManager/racks5/cable" unique_id=355474263]
 transform = Transform3D(2, 1.4210855e-14, -2.9646153e-21, 0, 0.20000002, 0, 7.6232965e-21, -1.4210855e-14, 2, -34.781597, -0.80091286, -3.8442383)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="racks6" parent="racks_line/racks2" unique_id=362224004 instance=ExtResource("1_5d6jn")]
+[node name="racks6" parent="racks_line/GameManager" unique_id=362224004 instance=ExtResource("1_5d6jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9391503, 0, -4.7683716e-07)
 
-[node name="server-racking-system2" parent="racks_line/racks2/racks6" unique_id=1672060043 instance=ExtResource("1_5d6jn")]
+[node name="server-racking-system2" parent="racks_line/GameManager/racks6" unique_id=1672060043 instance=ExtResource("1_5d6jn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.006, 0, -0.1)
 
-[node name="cable" type="CSGMesh3D" parent="racks_line/racks2/racks6" unique_id=1852888517]
+[node name="cable" type="CSGMesh3D" parent="racks_line/GameManager/racks6" unique_id=1852888517]
 transform = Transform3D(2.1855695e-09, -0.4, -4.371139e-09, -0.05, -1.7484556e-08, -1.323489e-23, -1.9106854e-16, 3.4969112e-08, -0.05, 0.02352953, 0.15761423, -0.6138091)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_floor" type="CSGMesh3D" parent="racks_line/racks2/racks6/cable" unique_id=1117979674]
+[node name="cable_floor" type="CSGMesh3D" parent="racks_line/GameManager/racks6/cable" unique_id=1117979674]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 2.1175824e-22, 0, 1, 0, 0, -22.48497)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_up" type="CSGMesh3D" parent="racks_line/racks2/racks6/cable" unique_id=1457335256]
+[node name="cable_up" type="CSGMesh3D" parent="racks_line/GameManager/racks6/cable" unique_id=1457335256]
 transform = Transform3D(2, 1.4210855e-14, -2.9646153e-21, 0, 0.20000002, 0, 7.19978e-21, -1.4210855e-14, 2, -34.781597, -0.80091095, -19.557709)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_up2" type="CSGMesh3D" parent="racks_line/racks2/racks6/cable" unique_id=125069800]
+[node name="cable_up2" type="CSGMesh3D" parent="racks_line/GameManager/racks6/cable" unique_id=125069800]
 transform = Transform3D(2, 1.4210855e-14, -2.9646153e-21, 0, 0.20000002, 0, 7.6232965e-21, -1.4210855e-14, 2, -34.781597, -0.80091286, -3.8442383)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="racks7" parent="racks_line/racks2" unique_id=2130896903 instance=ExtResource("1_5d6jn")]
+[node name="racks7" parent="racks_line/GameManager" unique_id=2130896903 instance=ExtResource("1_5d6jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.728058, 0, -4.7683716e-07)
 
-[node name="server-racking-system2" parent="racks_line/racks2/racks7" unique_id=968547376 instance=ExtResource("1_5d6jn")]
+[node name="server-racking-system2" parent="racks_line/GameManager/racks7" unique_id=968547376 instance=ExtResource("1_5d6jn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.006, 0, -0.1)
 
-[node name="cable" type="CSGMesh3D" parent="racks_line/racks2/racks7" unique_id=324316256]
+[node name="cable" type="CSGMesh3D" parent="racks_line/GameManager/racks7" unique_id=324316256]
 transform = Transform3D(2.1855695e-09, -0.4, -4.371139e-09, -0.05, -1.7484556e-08, -1.323489e-23, -1.9106854e-16, 3.4969112e-08, -0.05, 0.02352953, 0.15761423, -0.6138091)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_floor" type="CSGMesh3D" parent="racks_line/racks2/racks7/cable" unique_id=1500385263]
+[node name="cable_floor" type="CSGMesh3D" parent="racks_line/GameManager/racks7/cable" unique_id=1500385263]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 2.1175824e-22, 0, 1, 0, 0, -22.48497)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_up" type="CSGMesh3D" parent="racks_line/racks2/racks7/cable" unique_id=639892102]
+[node name="cable_up" type="CSGMesh3D" parent="racks_line/GameManager/racks7/cable" unique_id=639892102]
 transform = Transform3D(2, 1.4210855e-14, -2.9646153e-21, 0, 0.20000002, 0, 7.19978e-21, -1.4210855e-14, 2, -34.781597, -0.80091095, -19.557709)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_up2" type="CSGMesh3D" parent="racks_line/racks2/racks7/cable" unique_id=389310352]
+[node name="cable_up2" type="CSGMesh3D" parent="racks_line/GameManager/racks7/cable" unique_id=389310352]
 transform = Transform3D(2, 1.4210855e-14, -2.9646153e-21, 0, 0.20000002, 0, 7.6232965e-21, -1.4210855e-14, 2, -34.781597, -0.80091286, -3.8442383)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="racks8" parent="racks_line/racks2" unique_id=1793214322 instance=ExtResource("1_5d6jn")]
+[node name="racks8" parent="racks_line/GameManager" unique_id=1793214322 instance=ExtResource("1_5d6jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.504286, 0, -4.7683716e-07)
 
-[node name="server-racking-system2" parent="racks_line/racks2/racks8" unique_id=1407001453 instance=ExtResource("1_5d6jn")]
+[node name="server-racking-system2" parent="racks_line/GameManager/racks8" unique_id=1407001453 instance=ExtResource("1_5d6jn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.006, 0, -0.1)
 
-[node name="cable" type="CSGMesh3D" parent="racks_line/racks2/racks8" unique_id=489168482]
+[node name="cable" type="CSGMesh3D" parent="racks_line/GameManager/racks8" unique_id=489168482]
 transform = Transform3D(2.1855695e-09, -0.4, -4.371139e-09, -0.05, -1.7484556e-08, -1.323489e-23, -1.9106854e-16, 3.4969112e-08, -0.05, 0.02352953, 0.15761423, -0.6138091)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_floor" type="CSGMesh3D" parent="racks_line/racks2/racks8/cable" unique_id=1816290004]
+[node name="cable_floor" type="CSGMesh3D" parent="racks_line/GameManager/racks8/cable" unique_id=1816290004]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 2.1175824e-22, 0, 1, 0, 0, -22.48497)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_up" type="CSGMesh3D" parent="racks_line/racks2/racks8/cable" unique_id=1960474942]
+[node name="cable_up" type="CSGMesh3D" parent="racks_line/GameManager/racks8/cable" unique_id=1960474942]
 transform = Transform3D(2, 1.4210855e-14, -2.9646153e-21, 0, 0.20000002, 0, 7.19978e-21, -1.4210855e-14, 2, -34.781597, -0.80091095, -19.557709)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_up2" type="CSGMesh3D" parent="racks_line/racks2/racks8/cable" unique_id=554728231]
+[node name="cable_up2" type="CSGMesh3D" parent="racks_line/GameManager/racks8/cable" unique_id=554728231]
 transform = Transform3D(2, 1.4210855e-14, -2.9646153e-21, 0, 0.20000002, 0, 7.6232965e-21, -1.4210855e-14, 2, -34.781597, -0.80091286, -3.8442383)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="racks9" parent="racks_line/racks2" unique_id=2145123019 instance=ExtResource("1_5d6jn")]
+[node name="racks9" parent="racks_line/GameManager" unique_id=2145123019 instance=ExtResource("1_5d6jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.290148, 0, -4.7683716e-07)
 
-[node name="server-racking-system2" parent="racks_line/racks2/racks9" unique_id=885765996 instance=ExtResource("1_5d6jn")]
+[node name="server-racking-system2" parent="racks_line/GameManager/racks9" unique_id=885765996 instance=ExtResource("1_5d6jn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.006, 0, -0.1)
 
-[node name="cable" type="CSGMesh3D" parent="racks_line/racks2/racks9" unique_id=1139296548]
+[node name="cable" type="CSGMesh3D" parent="racks_line/GameManager/racks9" unique_id=1139296548]
 transform = Transform3D(2.1855695e-09, -0.4, -4.371139e-09, -0.05, -1.7484556e-08, -1.323489e-23, -1.9106854e-16, 3.4969112e-08, -0.05, 0.02352953, 0.15761423, -0.6138091)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_floor" type="CSGMesh3D" parent="racks_line/racks2/racks9/cable" unique_id=1004676635]
+[node name="cable_floor" type="CSGMesh3D" parent="racks_line/GameManager/racks9/cable" unique_id=1004676635]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 2.1175824e-22, 0, 1, 0, 0, -22.48497)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_up" type="CSGMesh3D" parent="racks_line/racks2/racks9/cable" unique_id=830782808]
+[node name="cable_up" type="CSGMesh3D" parent="racks_line/GameManager/racks9/cable" unique_id=830782808]
 transform = Transform3D(2, 1.4210855e-14, -2.9646153e-21, 0, 0.20000002, 0, 7.19978e-21, -1.4210855e-14, 2, -34.781597, -0.80091095, -19.557709)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_up2" type="CSGMesh3D" parent="racks_line/racks2/racks9/cable" unique_id=1921430736]
+[node name="cable_up2" type="CSGMesh3D" parent="racks_line/GameManager/racks9/cable" unique_id=1921430736]
 transform = Transform3D(2, 1.4210855e-14, -2.9646153e-21, 0, 0.20000002, 0, 7.6232965e-21, -1.4210855e-14, 2, -34.781597, -0.80091286, -3.8442383)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="racks10" parent="racks_line/racks2" unique_id=1710754984 instance=ExtResource("1_5d6jn")]
+[node name="racks10" parent="racks_line/GameManager" unique_id=1710754984 instance=ExtResource("1_5d6jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.067538, 0, -4.7683716e-07)
 
-[node name="server-racking-system2" parent="racks_line/racks2/racks10" unique_id=1805527797 instance=ExtResource("1_5d6jn")]
+[node name="server-racking-system2" parent="racks_line/GameManager/racks10" unique_id=1805527797 instance=ExtResource("1_5d6jn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.006, 0, -0.1)
 
-[node name="cable" type="CSGMesh3D" parent="racks_line/racks2/racks10" unique_id=285868844]
+[node name="cable" type="CSGMesh3D" parent="racks_line/GameManager/racks10" unique_id=285868844]
 transform = Transform3D(2.1855695e-09, -0.4, -4.371139e-09, -0.05, -1.7484556e-08, -1.323489e-23, -1.9106854e-16, 3.4969112e-08, -0.05, -0.053678513, 0.15761423, -0.6138091)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
 
-[node name="cable_floor" type="CSGMesh3D" parent="racks_line/racks2/racks10/cable" unique_id=393257641]
+[node name="cable_floor" type="CSGMesh3D" parent="racks_line/GameManager/racks10/cable" unique_id=393257641]
 transform = Transform3D(1, 5.684342e-14, -6.352747e-22, 0, 0.9600001, 0, 1.0587912e-21, -5.684342e-14, 1, 0, 0.09610939, -22.484993)
 material_override = SubResource("StandardMaterial3D_cj5kg")
 mesh = SubResource("CylinderMesh_5d6jn")
@@ -2107,6 +2124,8 @@ mesh = SubResource("CylinderMesh_5d6jn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.850999, 1.190022, 0.21654272)
 shape = SubResource("BoxShape3D_cj5kg")
 
+[node name="Node3D" type="Node3D" parent="racks_line" unique_id=1450294989]
+
 [node name="Environment" type="StaticBody3D" parent="." unique_id=1508914746]
 
 [node name="floor" type="CSGBox3D" parent="Environment" unique_id=1512695331]
@@ -2133,6 +2152,201 @@ size = Vector3(20, 5, 0.5)
 [node name="ceiling" type="CSGMesh3D" parent="Environment" unique_id=207012910]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.488611, 0)
 mesh = SubResource("BoxMesh_cj5kg")
+
+[node name="light" type="CSGCylinder3D" parent="Environment" unique_id=266847401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9927397, 5.380516, -8.300127)
+radius = 0.4
+height = 0.2
+sides = 25
+material = SubResource("StandardMaterial3D_5d6jn")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment/light" unique_id=950377997]
+transform = Transform3D(0.991725, 0.12838012, 1.8801223e-09, 0.008745229, -0.06755614, 0.99767715, 0.12808189, -0.9894214, -0.06811983, 0.062309265, 2.1657934, 0.11107826)
+light_color = Color(0, 0.5686275, 1, 1)
+spot_range = 7.0
+spot_attenuation = -0.59
+
+[node name="light2" type="CSGCylinder3D" parent="Environment/light" unique_id=1705707002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.297241)
+radius = 0.4
+height = 0.2
+sides = 25
+material = SubResource("StandardMaterial3D_5d6jn")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment/light/light2" unique_id=1996019204]
+transform = Transform3D(0.991725, 0.12838012, 1.8801223e-09, 0.008745229, -0.06755614, 0.99767715, 0.12808189, -0.9894214, -0.06811983, 0.062309265, 2.1657934, 0.11107826)
+light_color = Color(0, 0.5686275, 1, 1)
+spot_range = 7.0
+spot_attenuation = -0.59
+
+[node name="light3" type="CSGCylinder3D" parent="Environment/light" unique_id=119222037]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.483792)
+radius = 0.4
+height = 0.2
+sides = 25
+material = SubResource("StandardMaterial3D_5d6jn")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment/light/light3" unique_id=1294938867]
+transform = Transform3D(0.991725, 0.12838012, 1.8801223e-09, 0.008745229, -0.06755614, 0.99767715, 0.12808189, -0.9894214, -0.06811983, 0.062309265, 2.1657934, 0.11107826)
+light_color = Color(0, 0.5686275, 1, 1)
+spot_range = 7.0
+spot_attenuation = -0.59
+
+[node name="light4" type="CSGCylinder3D" parent="Environment/light" unique_id=1831180409]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2241006, 0, 15.483792)
+radius = 0.4
+height = 0.2
+sides = 25
+material = SubResource("StandardMaterial3D_5d6jn")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment/light/light4" unique_id=1687219357]
+transform = Transform3D(0.991725, 0.12838012, 1.8801223e-09, 0.008745229, -0.06755614, 0.99767715, 0.12808189, -0.9894214, -0.06811983, 0.062309265, 2.1657934, 0.11107826)
+light_color = Color(0, 0.5686275, 1, 1)
+spot_range = 7.0
+spot_attenuation = -0.59
+
+[node name="light5" type="CSGCylinder3D" parent="Environment/light" unique_id=1967719095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2241006, 0, 7.9839444)
+radius = 0.4
+height = 0.2
+sides = 25
+material = SubResource("StandardMaterial3D_5d6jn")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment/light/light5" unique_id=1635543041]
+transform = Transform3D(0.991725, 0.12838012, 1.8801223e-09, 0.008745229, -0.06755614, 0.99767715, 0.12808189, -0.9894214, -0.06811983, 0.062309265, 2.1657934, 0.11107826)
+light_color = Color(0, 0.5686275, 1, 1)
+spot_range = 7.0
+spot_attenuation = -0.59
+
+[node name="light6" type="CSGCylinder3D" parent="Environment/light" unique_id=1900239851]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2241006, 0, 0.13744926)
+radius = 0.4
+height = 0.2
+sides = 25
+material = SubResource("StandardMaterial3D_5d6jn")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment/light/light6" unique_id=1548577370]
+transform = Transform3D(0.991725, 0.12838012, 1.8801223e-09, 0.008745229, -0.06755614, 0.99767715, 0.12808189, -0.9894214, -0.06811983, 0.062309265, 2.1657934, 0.11107826)
+light_color = Color(0, 0.5686275, 1, 1)
+spot_range = 7.0
+spot_attenuation = -0.59
+
+[node name="light7" type="CSGCylinder3D" parent="Environment/light" unique_id=2127327409]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.437046, 0, 0.13744926)
+radius = 0.4
+height = 0.2
+sides = 25
+material = SubResource("StandardMaterial3D_5d6jn")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment/light/light7" unique_id=1428808863]
+transform = Transform3D(0.991725, 0.12838012, 1.8801223e-09, 0.008745229, -0.06755614, 0.99767715, 0.12808189, -0.9894214, -0.06811983, 0.062309265, 2.1657934, 0.11107826)
+light_color = Color(0, 0.5686275, 1, 1)
+spot_range = 7.0
+spot_attenuation = -0.59
+
+[node name="light8" type="CSGCylinder3D" parent="Environment/light" unique_id=1172108142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.391813, 0, 0.13744926)
+radius = 0.4
+height = 0.2
+sides = 25
+material = SubResource("StandardMaterial3D_5d6jn")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment/light/light8" unique_id=1636775713]
+transform = Transform3D(0.991725, 0.12838012, 1.8801223e-09, 0.008745229, -0.06755614, 0.99767715, 0.12808189, -0.9894214, -0.06811983, 0.062309265, 2.1657934, 0.11107826)
+light_color = Color(0, 0.5686275, 1, 1)
+spot_range = 7.0
+spot_attenuation = -0.59
+
+[node name="light9" type="CSGCylinder3D" parent="Environment/light" unique_id=204376306]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.198143, 0, 0.13744926)
+radius = 0.4
+height = 0.2
+sides = 25
+material = SubResource("StandardMaterial3D_5d6jn")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment/light/light9" unique_id=1082185474]
+transform = Transform3D(0.991725, 0.12838012, 1.8801223e-09, 0.008745229, -0.06755614, 0.99767715, 0.12808189, -0.9894214, -0.06811983, 0.062309265, 2.1657934, 0.11107826)
+light_color = Color(0, 0.5686275, 1, 1)
+spot_range = 7.0
+spot_attenuation = -0.59
+
+[node name="light10" type="CSGCylinder3D" parent="Environment/light" unique_id=1206935851]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.198143, 0, 8.309045)
+radius = 0.4
+height = 0.2
+sides = 25
+material = SubResource("StandardMaterial3D_5d6jn")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment/light/light10" unique_id=1879744122]
+transform = Transform3D(0.991725, 0.12838012, 1.8801223e-09, 0.008745229, -0.06755614, 0.99767715, 0.12808189, -0.9894214, -0.06811983, 0.062309265, 2.1657934, 0.11107826)
+light_color = Color(0, 0.5686275, 1, 1)
+spot_range = 7.0
+spot_attenuation = -0.59
+
+[node name="light11" type="CSGCylinder3D" parent="Environment/light" unique_id=444909506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.198143, 0, 15.267011)
+radius = 0.4
+height = 0.2
+sides = 25
+material = SubResource("StandardMaterial3D_5d6jn")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment/light/light11" unique_id=1060691404]
+transform = Transform3D(0.991725, 0.12838012, 1.8801223e-09, 0.008745229, -0.06755614, 0.99767715, 0.12808189, -0.9894214, -0.06811983, 0.062309265, 2.1657934, 0.11107826)
+light_color = Color(0, 0.5686275, 1, 1)
+spot_range = 7.0
+spot_attenuation = -0.59
+
+[node name="light12" type="CSGCylinder3D" parent="Environment/light" unique_id=1069702311]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.319849, 0, 15.267011)
+radius = 0.4
+height = 0.2
+sides = 25
+material = SubResource("StandardMaterial3D_5d6jn")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment/light/light12" unique_id=1144427847]
+transform = Transform3D(0.991725, 0.12838012, 1.8801223e-09, 0.008745229, -0.06755614, 0.99767715, 0.12808189, -0.9894214, -0.06811983, 0.062309265, 2.1657934, 0.11107826)
+light_color = Color(0, 0.5686275, 1, 1)
+spot_range = 7.0
+spot_attenuation = -0.59
+
+[node name="light13" type="CSGCylinder3D" parent="Environment/light" unique_id=1005801800]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.319849, 0, 8.15442)
+radius = 0.4
+height = 0.2
+sides = 25
+material = SubResource("StandardMaterial3D_5d6jn")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment/light/light13" unique_id=1112348692]
+transform = Transform3D(0.991725, 0.12838012, 1.8801223e-09, 0.008745229, -0.06755614, 0.99767715, 0.12808189, -0.9894214, -0.06811983, 0.062309265, 2.1657934, 0.11107826)
+light_color = Color(0, 0.5686275, 1, 1)
+spot_range = 7.0
+spot_attenuation = -0.59
+
+[node name="light14" type="CSGCylinder3D" parent="Environment/light" unique_id=664651530]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.270599, 0, 8.15442)
+radius = 0.4
+height = 0.2
+sides = 25
+material = SubResource("StandardMaterial3D_5d6jn")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment/light/light14" unique_id=1751405459]
+transform = Transform3D(0.991725, 0.12838012, 1.8801223e-09, 0.008745229, -0.06755614, 0.99767715, 0.12808189, -0.9894214, -0.06811983, 0.062309265, 2.1657934, 0.11107826)
+light_color = Color(0, 0.5686275, 1, 1)
+spot_range = 7.0
+spot_attenuation = -0.59
+
+[node name="light15" type="CSGCylinder3D" parent="Environment/light" unique_id=1145040970]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.270599, 0, 15.497658)
+radius = 0.4
+height = 0.2
+sides = 25
+material = SubResource("StandardMaterial3D_5d6jn")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment/light/light15" unique_id=1380349635]
+transform = Transform3D(0.991725, 0.12838012, 1.8801223e-09, 0.008745229, -0.06755614, 0.99767715, 0.12808189, -0.9894214, -0.06811983, 0.062309265, 2.1657934, 0.11107826)
+light_color = Color(0, 0.5686275, 1, 1)
+spot_range = 7.0
+spot_attenuation = -0.59
 
 [node name="coll_floor" type="CollisionShape3D" parent="Environment" unique_id=1957218044]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.012833595, 0.21147156, -0.0046844482)

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dse8g3dayqip4"]
+
+[ext_resource type="Script" uid="uid://deru884gskhs2" path="res://character_body_3d.gd" id="1_onrkg"]
+[ext_resource type="PackedScene" uid="uid://c7xrccybwsch0" path="res://robot_player.tscn" id="2_i3pqv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hqtel"]
+radius = 0.16748047
+height = 0.7001953
+
+[node name="player" type="Node3D" unique_id=968252096]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=36108404]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.10373491, 0)
+script = ExtResource("1_onrkg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1239742976]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.014766594, 0.16918476, -0.2043234)
+shape = SubResource("CapsuleShape3D_hqtel")
+
+[node name="Head" parent="CharacterBody3D" unique_id=1529190048 instance=ExtResource("2_i3pqv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011340618, -1.1920929e-07, -0.18721056)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Head" unique_id=1893112383]
+transform = Transform3D(-0.33333334, 0, -2.9140931e-08, -1.0699583e-08, 0.31005174, 0.12238898, 2.7105582e-08, 0.12238898, -0.31005174, 0.0045254426, 0.38529468, -0.27519274)
